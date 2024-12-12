@@ -28,29 +28,29 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["get-started/introduction", "get-started/quickstart", "get-started/development"]
-    },
-    {
-      "group": "Essentials",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "get-started/introduction",
+        "get-started/installation",
+        "get-started/development"
       ]
     },
     {
-      "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
+      "group": "Core Concepts",
+      "pages": [
+        "core-concepts/elemental-flows",
+        "core-concepts/compound-flows",
+        "core-concepts/datasets-and-rag",
+        "core-concepts/available-models"
+      ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "How To Guides",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "how-to-guides/using-marketplace-flows",
+        "how-to-guides/building-elemental-flows",
+        "how-to-guides/building-compound-flows",
+        "how-to-guides/implementing-rag-capabilities",
+        "how-to-guides/saving-&-customising-marketplace-flows"
       ]
     }
   ],

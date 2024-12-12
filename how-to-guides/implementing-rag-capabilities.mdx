@@ -1,0 +1,102 @@
+---
+title: "Implementing RAG Capabilities"
+description: "Learn how to enhance your flows with Retrieval-Augmented Generation (RAG) using Mira Flows SDK"
+---
+
+### 🎥 Video Tutorial
+
+For a visual walkthrough of implementing **RAG**, watch our explanation video: [**RAG Implementation Tutorial**](#) 📹✨
+
+### 🤔 Understanding RAG Implementation
+
+**Retrieval-Augmented Generation (RAG)** enhances your flows with specific domain knowledge. The implementation process involves three main stages:
+
+1. 🗂️ **Create a Dataset**: Establish a knowledge base that contains specialized information your flow will reference during execution.
+2. ➕ **Add Data Sources**: Populate your dataset with relevant information from various supported sources.
+3. 🔗 **Link Dataset to Flow**: Connect the knowledge base to your flow, enabling it to leverage this information during processing.
+
+### 🆕 Creating Your Dataset
+
+Begin by establishing your knowledge base:
+
+```python Python
+from mira_sdk import MiraClient
+
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})        # Initialize client
+
+# Create a new dataset
+client.dataset.create(
+    "author/dataset_name",                                     # Unique identifier
+    "Description of your knowledge base"                       # Dataset purpose
+)
+```
+
+### ➕ Adding Data Sources
+
+Populate your dataset with information from various supported formats:
+
+```python Python
+# Add a PDF document
+client.dataset.add_source("author/dataset_name", file_path="document.pdf")
+
+# Add web content
+client.dataset.add_source("author/dataset_name", url="https://example.com/data")
+
+# Add multiple sources from a CSV file
+client.dataset.add_source("author/dataset_name", file_path="sources.csv")
+```
+
+### 🔗 Linking Dataset to Flow
+
+Connect your dataset to an existing flow by modifying its configuration:
+
+```yaml .yaml
+# Flow configuration with RAG
+version: "your.version.here"
+
+metadata:
+  name: "your-flow-name"                # Unique identifier
+  description: "RAG-enabled flow"       # Flow description
+  author: "your-username"               # Your Mira Flows username
+
+dataset:
+  source: "author/dataset_name"         # Link to your dataset
+
+# Rest of your flow configuration remains unchanged
+```
+
+For comprehensive information about **RAG Implementation**, **advanced features**, and **best practices**, please refer to our complete **documentation** 📖🔗.
+
+---
+
+## 🏆 Best Practices
+
+When implementing **RAG Capabilities**, focus on:
+
+### 📈 Data Quality
+- **Ensure data sources are reliable**
+- **Maintain up-to-date content**
+- **Verify file format compatibility**
+- **Document data sources properly**
+
+### 🛠️ Dataset Management
+- **Regular content updates**
+- **Monitor retrieval quality**
+- **Optimize chunk settings**
+- **Track performance metrics**
+
+### 📄 Documentation
+- **Document dataset configurations**
+- **Maintain version history**
+- **Record processing methods**
+- **Note any data limitations**
+
+### ⚡ Performance Considerations
+- **Optimize chunk sizes**
+- **Monitor retrieval times**
+- **Balance accuracy and speed**
+- **Conduct regular performance reviews**
+
+---
+
+For additional details on implementation and advanced features, please refer to the official **Mira Flows documentation** 📖🔗 and **API reference**.

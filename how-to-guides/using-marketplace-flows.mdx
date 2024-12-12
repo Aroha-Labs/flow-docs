@@ -1,0 +1,129 @@
+---
+title: "Using Marketplace Flows"
+description: "Learn how to discover, integrate, and customize pre-built flows from the Mira Flows Marketplace"
+---
+
+**Mira Flows** offers a **Marketplace** where you can explore and use a variety of pre-built flows. There are two primary ways to utilize these flows:
+
+1. 🛠️ **Using the Mira Flows SDK**
+2. 🌐 **Direct API calls (without the SDK)**
+
+---
+
+## 🔍 Exploring the Marketplace
+
+To discover available flows:
+
+1. 🚀 **Navigate to the [**Marketplace**](https://console.mira.network/)**
+2. 🔎 **Browse or search for flows that fit your needs**
+
+**Mira Flows** offers a **Marketplace** where you can explore and use a variety of pre-built flows. There are two primary ways to utilize these flows:
+
+1. 🛠️ **Using the Mira Flows SDK**
+2. 🌐 **Direct API calls (without the SDK)**
+
+---
+
+## 🛠️ Using Flows via the SDK
+
+```python Python
+from mira_sdk import MiraClient, Flow
+
+# Initialize the client
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+
+version = "1.0.0"
+input_data = {"key": "value"}
+
+# If no version is provided, latest version is used by default
+if version:
+    flow_name = f"author/your-flow-name/{version}"
+else:
+    flow_name = "author/your-flow-name"
+
+result = client.flow.execute(flow_name, input_data)
+print(result)
+```
+
+---
+
+## 📂 Flow Management via SDK
+
+```python Python
+from mira_sdk import MiraClient, Flow
+
+# Get a flow
+flow = client.flow.get("author/flow_name")
+
+# Get flows by author
+flows = client.flow.get_by_author("author")
+
+# Get flows by tag
+flows = client.flow.get_by_tag("tag")
+
+# Search for flow
+flows = client.flow.search("abcd")
+```
+
+---
+
+## 🌐 Direct API Calls (Without SDK)
+
+For those who prefer not to use the SDK or are working in other programming languages, you can interact with flows directly via API calls:
+
+1. 🔍 **Find the flow you want to use in the marketplace and view its API documentation.**
+2. 📡 **Use the flow's API endpoint in your HTTP requests**
+
+```terminal Terminal
+curl --request POST \
+  --url https://console-bff.stg.arohalabs.dev/v1/flows/flows/{author}/{flow_name} \
+  --header 'MiraAuthorization: YOUR_API_KEY' \
+  --data '{
+    "input_param": "value"
+}'
+```
+
+Replace `YOUR_API_KEY`, `author`, and `flow_name` with your actual API key, author name, and flow name, and adjust the endpoint and payload structure according to the specific flow's requirements.
+
+**Response**:
+
+```json .json
+{
+  "result": "LLM output"
+}
+```
+
+---
+
+## 🏆 Best Practices
+
+When using **Marketplace Flows**, consider these key practices:
+
+### 📦 Choosing the Right Flow
+- **Evaluate flow capabilities** to ensure they match your project requirements
+- **Check flow documentation** for detailed usage instructions
+- **Review flow ratings and feedback** from other users
+
+### 🔧 Integration Tips
+- **Use the SDK for streamlined integration** and enhanced functionality
+- **Handle API responses carefully** to manage errors and exceptions gracefully
+- **Secure your API keys** and credentials to protect your flows
+
+### 🛠️ Customization
+- **Modify input parameters** to tailor flows to your specific needs
+- **Combine multiple flows** to create complex workflows and automation sequences
+- **Test flows thoroughly** to ensure they perform as expected in your environment
+
+### 📈 Performance Optimization
+- **Monitor flow execution times** to identify and address bottlenecks
+- **Optimize input data** to improve flow efficiency and output quality
+- **Regularly update flows** to benefit from the latest features and improvements
+
+### 📚 Documentation and Support
+- **Refer to official documentation** for detailed guidance and troubleshooting 
+- **Join the Mira Flows community** to share experiences and seek assistance
+- **Provide feedback** to help improve Marketplace offerings and support
+
+---
+
+For additional details on implementation and advanced features, please refer to the official **Mira Flows documentation** 📖🔗 and **API reference**.

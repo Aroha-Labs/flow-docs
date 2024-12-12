@@ -1,0 +1,193 @@
+---
+title: "Build Your Own Compound Flow"
+description: "Learn how to build your own flow using Mira Flows SDK"
+---
+
+This guide explains how to **create, test, and deploy compound flows** that implement complex, multi-stage processing pipelines. **Compound flows** provide sophisticated capabilities for implementing business logic, custom processing stages, and integration with existing **elemental flows**. 🔄💡
+
+---
+
+## 🎥 Video Tutorial
+
+For a visual walkthrough of this process, watch our explanation video: [**Building Compound Flows Tutorial**](#) 📹✨
+
+---
+
+## 🔄 Development Lifecycle
+
+Creating a **compound flow** follows a systematic process:
+
+<Steps>
+  <Step title="📝 **Configuration**: Define your compound flow using YAML"></Step>
+  <Step title="🧪 **Testing**: Validate the entire processing pipeline"></Step>
+  <Step title="🚀 **Deployment**: Make your flow available"></Step>
+  <Step title="▶️ **Execution**: Run your multi-stage workflow"></Step>
+  <Step title="🔄 **Updates**: Iterate and improve"></Step>
+</Steps>
+
+Let's explore each step in detail.
+
+---
+
+## 📝 Step 1: YAML Configuration
+
+```yaml .yaml
+version: "0.1.0"                                     # Flow specification version
+
+metadata:
+  flow_type: "compound"                              # Specifies this as a compound flow
+  name: "your-flow-name"                             # Unique identifier
+  description: "Complex data processing pipeline"
+  author: "your-username"                            # Your Mira Flows username
+  tags: [tag1, tag2, tag3]                           # Discovery keywords
+  private: true                                      # Access control setting
+
+inputs:
+  prime_input_1:                                     # Primary input parameter
+    type: string
+    description: "Primary data for processing"
+    required: true
+    example: "Raw text data"
+  prime_input_2:                                     # Secondary input parameter
+    type: string
+    description: "Processing parameters"
+    required: false
+    example: "Processing configuration"
+
+workflow:
+  data_preparation:                                  # Custom processing stage
+    type: custom
+    inputs:
+      raw_data: ${inputs.prime_input_1}
+      parameters: ${inputs.prime_input_2}
+    model:
+      provider: "provider-name"                      # e.g., anthropic, openai, meta, etc.
+      name: "model-name"                             # Specific model identifier
+    prompt: |
+      Custom processing instructions...
+
+  analysis_stage:                                    # Integration with elemental flow
+    type: elemental
+    flow_name: "author/analysis_flow"
+    depends_on: [data_preparation]
+    inputs:
+      prepared_data: ${data_preparation.output}
+
+output:
+  value:                                             # Combine outputs in order
+    - ${analysis_stage.outputs}
+
+readme: |
+  Multi-stage processing pipeline documentation...
+```
+
+---
+
+## 🧪 Step 2: Testing
+
+**Test your compound flow** to ensure all stages work correctly:
+
+```python Python
+from mira_sdk import MiraClient, Flow
+from mira_sdk.exceptions import FlowError
+
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})     # Initialize Mira Client
+flow = Flow(source="/path/to/compound_flow.yaml")           # Load flow configuration
+
+test_input = {                                              # Prepare test inputs
+    "prime_input_1": "test data",
+    "prime_input_2": "test parameters"
+}
+
+try:
+    response = client.flow.test(flow, test_input)           # Test entire pipeline
+    print("Test response:", response)
+except FlowError as e:
+    print("Test failed:", str(e))                           # Handle test failure
+```
+
+---
+
+## 🚀 Step 3: Deployment
+
+**Deploy your compound flow** to make it available:
+
+```python Python
+try:
+    client.flow.deploy(flow)                               # Deploy to platform
+    print("Compound flow deployed successfully!")          # Success message
+except FlowError as e:
+    print(f"Deployment error: {str(e)}")                   # Handle deployment error
+```
+
+---
+
+## ▶️ Step 4: Execution
+
+After deployment, **execute your compound flow**:
+
+```python Python
+flow_name = "your-username/your-flow-name"                 # Flow identifier
+input_data = {                                             # Execution inputs
+    "prime_input_1": "production data",
+    "prime_input_2": "production parameters"
+}
+
+try:
+    result = client.flow.execute(flow_name, input_data)    # Execute workflow
+    print("Execution result:", result)                     # Display result
+except FlowError as e:
+    print("Execution error:", str(e))                      # Handle execution error
+```
+
+---
+
+## 🔄 Step 5: Updates
+
+When you need to **modify your compound flow**:
+
+```python Python
+flow = client.flow.get("your-username/your-flow-name")     # Retrieve existing flow
+flow.save("/path/to/compound_flow.yaml")                   # Save for editing
+
+try:
+    client.flow.deploy(flow)                               # Deploy updated version
+    print("Updated flow deployed successfully!")           # Success message
+except FlowError as e:
+    print(f"Update error: {str(e)}")                       # Handle update error
+
+# In case you forget to bump the flow version, it will get bumped by default every time you deploy the same flow.
+```
+
+By following these steps, you can **create, test, deploy, and manage** your own **custom compound flows** on the **Mira Flows** platform. This process allows you to **contribute to the Marketplace** and **continuously improve** your flows over time. 🌟🔧
+
+---
+
+## 🏆 Best Practices
+
+When building your own **Compound Flow**, focus on:
+
+### 🏗️ Architecture Design
+
+- **Map out processing stages clearly**
+- **Define stage dependencies explicitly**
+- **Plan error handling strategies**
+- **Consider performance implications**
+
+### 🔧 Flow Implementation
+
+- **Choose appropriate models** based on your flow requirements
+- **Define clear input/output contracts** between stages
+- **Implement proper error handling** for each stage
+- **Document flow-specific requirements**
+
+### 🧪 Testing and Maintenance
+
+- **Test each processing stage independently**
+- **Validate the entire processing pipeline**
+- **Monitor performance metrics**
+- **Maintain comprehensive documentation**
+
+---
+
+For comprehensive information about **compound flow development**, **advanced features**, and **best practices**, please refer to our complete **documentation** 📖🔗.

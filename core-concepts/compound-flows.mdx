@@ -1,0 +1,167 @@
+---
+title: "Compound Flows"
+description: "Step-by-step guide to installing and setting up Mira Flows SDK for your project"
+---
+
+A **Compound Flow** is an advanced flow type designed for complex, multi-stage processing pipelines. Unlike **Elemental Flows** which perform single, focused tasks, Compound Flows can create sophisticated decision trees, implement custom processing logic, and orchestrate multiple processing stages. This flexibility allows them to handle complex business scenarios requiring nuanced decision-making and intricate data transformations. 🔄💡
+
+Compound Flows can either define custom processing logic within their workflow or integrate existing Elemental Flows, providing maximum flexibility for solving complex challenges. 🤝🔧
+
+---
+
+## 🚀 Capabilities
+
+A Compound Flow excels in scenarios requiring:
+
+- **Advanced Decision Making**: Implement complex business logic with conditional processing paths 🧠🔀
+- **Custom Processing**: Create specialized processing stages directly within the flow 🛠️✨
+- **Flow Integration**: Incorporate existing Elemental Flows when needed 🔗🔄
+- **Parallel Processing**: Execute multiple stages simultaneously ⏩⚡
+- **Dynamic Routing**: Direct outputs based on processing results 🔀📈
+
+---
+
+## 📋 Flow Attributes
+
+<br></br>
+
+| **Component**   | **Description**               | **Required** | **Example**                              |
+| --------------- | ----------------------------- | ------------ | ---------------------------------------- |
+| **Version**     | Flow specification version    | Yes          | `"0.1.0"`                                |
+| **Flow Type**   | Must be specified as compound | Yes          | `"compound"`                             |
+| **Name**        | Unique identifier             | Yes          | `"your-flow-name"`                       |
+| **Description** | Purpose and functionality     | Yes          | `"Multi-stage data processing pipeline"` |
+| **Author**      | Creator's username            | Yes          | `"your-username"`                        |
+| **Tags**        | Categorization keywords       | No           | `["processing", "analysis"]`             |
+| **Privacy**     | Access control                | Yes          | `true` or `false`                        |
+| **Workflow**    | Processing stages definition  | Yes          | Map of flow stages                       |
+| **Output**      | Result combination rules      | Yes          | Ordered list of stage outputs            |
+
+---
+
+## 🛠️ Workflow Configuration
+
+Each stage in a Compound Flow's workflow can be either:
+
+### 🔧 Custom Processing Stage:
+
+- **Defined directly within the workflow** 📝
+- **Includes its own model, dataset, and prompt configurations** 📚🛠️
+- **Handles specialized processing requirements** 🛠️🔍
+
+### 🔗 Elemental Flow Integration:
+
+- **References existing Elemental Flows** 🔄
+- **Uses standardized input/output mappings** 🔀🗺️
+- **Leverages pre-built functionality** ⚙️✨
+
+---
+
+## 🏗️ Implementation Structure
+
+```yaml .yaml
+version: "0.1.0"
+
+metadata:
+  flow_type: "compound"
+  name: "your-flow-name"
+  description: "Complex data processing pipeline"
+  author: "your-username"
+  tags: [tag1, tag2, tag3]
+  private: true
+
+inputs:
+  prime_input_1:
+    type: string
+    description: "Primary data for processing"
+    required: true
+    example: "Raw text data"
+  prime_input_2:
+    type: string
+    description: "Processing parameters"
+    required: false
+    example: "Processing configuration"
+
+workflow:
+  # 🔧 Custom processing stage
+  data_preparation:
+    type: custom
+    inputs:
+      raw_data: ${inputs.prime_input_1}
+      parameters: ${inputs.prime_input_2}
+    model:
+      provider: "provider-name"
+      name: "model-name"
+    prompt: |
+      Custom processing instructions...
+      Process {raw_data} using {parameters}...
+
+  # 🔗 Integrated Elemental Flow
+  analysis_stage:
+    type: elemental
+    flow_name: "author/analysis_flow"
+    depends_on: [data_preparation]
+    inputs:
+      prepared_data: ${data_preparation.output}
+
+  # 🔧 Another custom stage
+  result_formatting:
+    type: custom
+    depends_on: [analysis_stage]
+    inputs:
+      analysis_results: ${analysis_stage.output}
+    model:
+      provider: "provider-name"
+      name: "model-name"
+    prompt: |
+      Format the analysis results...
+      Transform {analysis_results} into final format...
+
+output:
+  value:
+    - ${result_formatting.outputs}
+
+readme: |
+  Multi-stage processing pipeline that combines custom processing with pre-built analysis capabilities.
+
+  ### 📌 Processing Stages:
+  1. **Data Preparation**: Custom preprocessing of input data
+  2. **Analysis**: Utilizes specialized analysis flow
+  3. **Result Formatting**: Custom formatting of final output
+
+  ### 📋 Usage Requirements:
+  - Input data format specifications
+  - Processing parameter guidelines
+  - Output format details
+```
+
+---
+
+## 🏆 Best Practices
+
+When developing **Compound Flows**, focus on:
+
+### 🏛️ Architecture Design
+
+- **Map out processing stages clearly** 
+- **Define stage dependencies explicitly** 
+- **Plan error handling strategies** 
+- **Consider performance implications** 
+
+### 🔧 Stage Implementation
+
+- **Choose between custom processing and Elemental Flows based on requirements** 
+- **Define clear input/output contracts between stages** 
+- **Implement proper error handling for each stage** 
+- **Document stage-specific requirements** 
+
+### 🧪 Testing and Maintenance
+
+- **Test each processing stage independently** 
+- **Validate entire processing pipeline** 
+- **Monitor performance metrics** 
+- **Maintain comprehensive documentation** 
+
+---
+
+For detailed implementation guidance and advanced features, please refer to our complete **documentation** 📖🔗.

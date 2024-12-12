@@ -1,0 +1,185 @@
+---
+title: "Elemental Flows"
+description: "Step-by-step guide to installing and setting up Mira Flows SDK for your project"
+---
+
+An **Elemental Flow** is a self-contained, autonomous unit designed to perform specific, unique actions. These flows serve as the foundational building blocks within the Mira Flows ecosystem, enabling precise and reliable AI-powered operations. 🤖✨
+
+---
+
+## 📋 Flow Attributes
+
+<br></br>
+
+| Component          | Description                                         | Required | Example                                |
+| ------------------ | --------------------------------------------------- | -------- | -------------------------------------- |
+| **Version**        | Flow iteration identifier using semantic versioning | Yes      | `"0.0.1"`                              |
+| **Name**           | Unique identifier for the flow                      | Yes      | `"your-flow-name"`                     |
+| **Description**    | Detailed explanation of flow functionality          | Yes      | `"A brief description of your flow"`   |
+| **Author**         | Creator's username                                  | Yes      | `"your-username"`                      |
+| **Tags**           | Categorization keywords                             | No       | `[tag1, tag2, tag3]`                   |
+| **Privacy**        | Access control setting                              | Yes      | `false`                                |
+| **Model Provider** | AI service provider                                 | Yes      | `"provider-name"`                      |
+| **Model Name**     | Specific model identifier                           | Yes      | `"model-name"`                         |
+| **Dataset**        | RAG configuration                                   | No       | Source path for knowledge base         |
+| **Prompt**         | Model instruction template                          | Yes      | Instructions with input placeholders   |
+| **Inputs**         | User-provided parameters                            | Yes      | Named parameters with type definitions |
+| **Readme**         | Usage documentation                                 | Yes      | Markdown-formatted guide               |
+
+---
+
+## 🛠️ Input Type Support
+
+Currently, Mira Flows supports the following input type:
+
+| Type       | Description             | Validation                              |
+| ---------- | ----------------------- | --------------------------------------- |
+| **String** | Text-based input values | Required field can be set to true/false |
+
+---
+
+## 🏗️ Basic Flow Structure
+
+The official YAML structure for a **basic Mira Flow**:
+
+```yaml .yaml
+version: "your.version.here"
+
+metadata:
+  name: "your-flow-name"
+  description: "A brief description of your flow"
+  author: "your-username"
+  tags: [tag1, tag2, tag3]
+  private: false
+
+inputs:
+  input1:
+    type: string
+    description: "Description of input1"
+    required: true
+    example: "Example value for input1"
+  input2:
+    type: string
+    description: "Description of input2"
+    required: true
+    example: "Example value for input2"
+
+model:
+  provider: "provider-name"
+  name: "model-name"
+
+prompt: |
+  Your flow's primary instruction or role...
+  You can use {input1} and {input2} placeholders to reference inputs.
+
+readme: |
+  Your flow's readme...
+  You can use raw text or markdown here.
+```
+
+---
+
+## 🔗 RAG Integration
+
+### 🗄️ Dataset Configuration
+
+To integrate **RAG capabilities**, you'll need to:
+
+<Steps>
+  <Step title="📂 Create a dataset using the Mira SDK"></Step>
+  <Step title="➕ Add data sources to your dataset"></Step>
+  <Step title="🔗 Link the dataset to your flow"></Step>
+</Steps>
+
+The following file formats are supported for datasets:
+
+| File Type          | Processing Method                          |
+| ------------------ | ------------------------------------------ |
+| **PDF (.pdf)**     | Text extraction from document              |
+| **Markdown (.md)** | Text extraction from document              |
+| **URL**            | Web content scraping                       |
+| **CSV (.csv)**     | URL extraction and content scraping        |
+| **Text (.txt)**    | Direct text extraction                     |
+| **Zip (.zip)**     | Processing of contained supported files    |
+
+
+### 🏗️ Flow Structure with RAG
+
+The official YAML structure for a **flow with RAG capabilities**:
+
+```yaml .yaml
+version: "your.version.here"
+
+metadata:
+  name: "your-flow-name"
+  description: "A brief description of your flow"
+  author: "your-username"
+  tags: [tag1, tag2, tag3]
+  private: false
+
+inputs:
+  input1:
+    type: string
+    description: "Description of input1"
+    required: true
+    example: "Example value for input1"
+
+model:
+  provider: "provider-name"
+  name: "model-name"
+
+dataset:
+  source: "author_name/dataset_name"
+
+prompt: |
+  Your flow's primary instruction or role...
+  You can use {input1} placeholders to reference inputs.
+
+readme: |
+  Your flow's readme...
+  You can use raw text or markdown here.
+```
+
+---
+
+## 🏆 Best Practices
+
+When developing **Elemental Flows**, consider these key practices:
+
+### 📌 Version Management
+
+- Follow semantic versioning (MAJOR.MINOR.PATCH) 
+- Document changes between versions 
+- Maintain backward compatibility when possible 
+
+### 🛠️ Input Design
+
+- Provide clear descriptions for all inputs 
+- Include relevant example values 
+- Specify input requirements accurately 
+
+### 🔗 RAG Implementation
+
+- Ensure datasets are properly formatted 
+- Maintain up-to-date knowledge bases 
+- Verify data source compatibility 
+- Monitor retrieval effectiveness 
+
+### 📄 Documentation
+
+- Maintain comprehensive readme content 
+- Document all input parameters 
+- Include usage examples 
+- Specify any dependencies or requirements 
+
+### ⚙️ Performance and Maintenance
+
+- Regular testing of flow functionality 
+- Monitoring of execution patterns 
+- Timely updates to maintain effectiveness 
+- Collection and analysis of usage metrics 
+
+---
+
+For additional details on implementation and advanced features, please refer to the official **Mira Flows documentation** and **API reference**. 📚🔗
+
