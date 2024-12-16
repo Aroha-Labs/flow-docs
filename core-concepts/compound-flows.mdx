@@ -1,9 +1,7 @@
 ---
-title: "Compound Flows"
+title: "Compound Flows 🔄"
 description: "Step-by-step guide to installing and setting up Mira Flows SDK for your project"
 ---
-
-# Compound Flows 🔄
 
 A Compound Flow is an advanced flow type designed for complex, multi-stage processing pipelines. Unlike Elemental Flows which perform single, focused tasks, Compound Flows can create sophisticated decision trees, implement custom processing logic, and orchestrate multiple processing stages. 🎯
 
@@ -11,30 +9,30 @@ A Compound Flow is an advanced flow type designed for complex, multi-stage proce
 
 ### Version ⚡
 
-| Component | Description | Required | Example |
-| --- | --- | --- | --- |
-| version | Flow specification version using semantic versioning | Yes | `"0.1.0"` |
+| Component | Description                                          | Required | Example   |
+| --------- | ---------------------------------------------------- | -------- | --------- |
+| version   | Flow specification version using semantic versioning | Yes      | `"0.1.0"` |
 
 ### Metadata 📝
 
-| Component | Description | Required | Example |
-| --- | --- | --- | --- |
-| flow_type | Type of flow (must be "compound") | Yes | `"compound"` |
-| name | Unique identifier for the flow | Yes | `"your-flow-name"` |
-| description | Explanation of flow's purpose | Yes | `"A brief description of your flow"` |
-| author | Creator's username | Yes | `"your-username"` |
-| tags | Keywords for categorization | No | `[tag1, tag2, tag3]` |
-| private | Access control setting | Yes | `false` |
+| Component   | Description                       | Required | Example                              |
+| ----------- | --------------------------------- | -------- | ------------------------------------ |
+| flow\_type  | Type of flow (must be "compound") | Yes      | `"compound"`                         |
+| name        | Unique identifier for the flow    | Yes      | `"your-flow-name"`                   |
+| description | Explanation of flow's purpose     | Yes      | `"A brief description of your flow"` |
+| author      | Creator's username                | Yes      | `"your-username"`                    |
+| tags        | Keywords for categorization       | No       | `[tag1, tag2, tag3]`                 |
+| private     | Access control setting            | Yes      | `false`                              |
 
 ### Input Configuration ⌨️
 
-| Component | Description | Required | Example |
-| --- | --- | --- | --- |
-| inputs | Map of input parameters | Yes | Collection of input definitions |
-| type | Data type of input (currently only string) | Yes | `"string"` |
-| description | Purpose of the input | Yes | `"Description of input1"` |
-| required | Whether input is mandatory | Yes | `true` or `false` |
-| example | Sample input value | No | `"Example value for input1"` |
+| Component   | Description                                | Required | Example                         |
+| ----------- | ------------------------------------------ | -------- | ------------------------------- |
+| inputs      | Map of input parameters                    | Yes      | Collection of input definitions |
+| type        | Data type of input (currently only string) | Yes      | `"string"`                      |
+| description | Purpose of the input                       | Yes      | `"Description of input1"`       |
+| required    | Whether input is mandatory                 | Yes      | `true` or `false`               |
+| example     | Sample input value                         | No       | `"Example value for input1"`    |
 
 ### Workflow Configuration 🔧
 
@@ -42,40 +40,43 @@ Each Compound Flow must define a workflow consisting of multiple processing stag
 
 #### Elemental Stage Configuration 🔌
 
-| Component | Description | Required | Example |
-| --- | --- | --- | --- |
-| type | Must be "elemental" | Yes | `"elemental"` |
-| flow_name | Reference to existing Elemental Flow | Yes | `"author/flow-name"` |
-| inputs | Mapping to flow inputs | Yes | Input mapping object |
-| depends_on | List of dependent stages | No | `["stage1", "stage2"]` |
+| Component   | Description                          | Required | Example                |
+| ----------- | ------------------------------------ | -------- | ---------------------- |
+| type        | Must be "elemental"                  | Yes      | `"elemental"`          |
+| flow\_name  | Reference to existing Elemental Flow | Yes      | `"author/flow-name"`   |
+| inputs      | Mapping to flow inputs               | Yes      | Input mapping object   |
+| depends\_on | List of dependent stages             | No       | `["stage1", "stage2"]` |
 
 #### Custom Stage Configuration ⚙️
 
-| Component | Description | Required | Example |
-| --- | --- | --- | --- |
-| type | Must be "custom" | Yes | `"custom"` |
-| model | LLM configuration | Yes | Model settings object |
-| prompt | Processing instructions | Yes | Template with {input} placeholders |
-| inputs | Stage input parameters | Yes | Input mapping object |
-| dataset | RAG dataset configuration | No | `"author_name/dataset_name"` |
-| depends_on | List of dependent stages | No | `["stage1", "stage2"]` |
+| Component   | Description               | Required | Example                            |
+| ----------- | ------------------------- | -------- | ---------------------------------- |
+| type        | Must be "custom"          | Yes      | `"custom"`                         |
+| model       | LLM configuration         | Yes      | Model settings object              |
+| prompt      | Processing instructions   | Yes      | Template with {input} placeholders |
+| inputs      | Stage input parameters    | Yes      | Input mapping object               |
+| dataset     | RAG dataset configuration | No       | `"author_name/dataset_name"`       |
+| depends\_on | List of dependent stages  | No       | `["stage1", "stage2"]`             |
 
 ### Dependency Configuration 🔗
 
-| Component | Description | Required | Example |
-| --- | --- | --- | --- |
-| depends_on | List of stages that must complete before execution | No | `["stage1", "stage2"]` |
+| Component   | Description                                        | Required | Example                |
+| ----------- | -------------------------------------------------- | -------- | ---------------------- |
+| depends\_on | List of stages that must complete before execution | No       | `["stage1", "stage2"]` |
 
 #### Execution Behavior ⚡
-- Stages without depends_on can execute in parallel
-- Stages with depends_on will wait for specified stages to complete
-- Multiple stages can depend on the same previous stage
+
+* Stages without depends\_on can execute in parallel
+
+* Stages with depends\_on will wait for specified stages to complete
+
+* Multiple stages can depend on the same previous stage
 
 ### Output Configuration 📤
 
-| Component | Description | Required | Example |
-| --- | --- | --- | --- |
-| output.value | List of stage outputs to combine | Yes | `[${stage1.outputs}, ${stage2.outputs}]` |
+| Component    | Description                      | Required | Example                                  |
+| ------------ | -------------------------------- | -------- | ---------------------------------------- |
+| output.value | List of stage outputs to combine | Yes      | `[${stage1.outputs}, ${stage2.outputs}]` |
 
 ## Basic Flow Structure 🏗️
 
@@ -172,8 +173,13 @@ readme: |
 Compound Flows can either define custom processing logic within their workflow or integrate existing Elemental Flows, providing maximum flexibility for solving complex challenges. The workflow allows for:
 
 1. Advanced Decision Making with conditional processing paths 🧠
+
 2. Custom Processing stages with direct model and prompt configurations ⚙️
+
 3. Integration of existing Elemental Flows for reusability 🔄
+
 4. Parallel execution of independent stages ⚡
-5. Sequential execution through depends_on configurations 🔗
+
+5. Sequential execution through depends\_on configurations 🔗
+
 6. Flexible input/output mapping between stages 🔀
