@@ -3,165 +3,177 @@ title: "Compound Flows"
 description: "Step-by-step guide to installing and setting up Mira Flows SDK for your project"
 ---
 
-A **Compound Flow** is an advanced flow type designed for complex, multi-stage processing pipelines. Unlike **Elemental Flows** which perform single, focused tasks, Compound Flows can create sophisticated decision trees, implement custom processing logic, and orchestrate multiple processing stages. This flexibility allows them to handle complex business scenarios requiring nuanced decision-making and intricate data transformations. 🔄💡
+# Compound Flows 🔄
 
-Compound Flows can either define custom processing logic within their workflow or integrate existing Elemental Flows, providing maximum flexibility for solving complex challenges. 🤝🔧
+A Compound Flow is an advanced flow type designed for complex, multi-stage processing pipelines. Unlike Elemental Flows which perform single, focused tasks, Compound Flows can create sophisticated decision trees, implement custom processing logic, and orchestrate multiple processing stages. 🎯
 
----
+## Compound Flow Attributes 📋
 
-## 🚀 Capabilities
+### Version ⚡
 
-A Compound Flow excels in scenarios requiring:
+| Component | Description | Required | Example |
+| --- | --- | --- | --- |
+| version | Flow specification version using semantic versioning | Yes | `"0.1.0"` |
 
-- **Advanced Decision Making**: Implement complex business logic with conditional processing paths 🧠🔀
-- **Custom Processing**: Create specialized processing stages directly within the flow 🛠️✨
-- **Flow Integration**: Incorporate existing Elemental Flows when needed 🔗🔄
-- **Parallel Processing**: Execute multiple stages simultaneously ⏩⚡
-- **Dynamic Routing**: Direct outputs based on processing results 🔀📈
+### Metadata 📝
 
----
+| Component | Description | Required | Example |
+| --- | --- | --- | --- |
+| flow_type | Type of flow (must be "compound") | Yes | `"compound"` |
+| name | Unique identifier for the flow | Yes | `"your-flow-name"` |
+| description | Explanation of flow's purpose | Yes | `"A brief description of your flow"` |
+| author | Creator's username | Yes | `"your-username"` |
+| tags | Keywords for categorization | No | `[tag1, tag2, tag3]` |
+| private | Access control setting | Yes | `false` |
 
-## 📋 Flow Attributes
+### Input Configuration ⌨️
 
-<br></br>
+| Component | Description | Required | Example |
+| --- | --- | --- | --- |
+| inputs | Map of input parameters | Yes | Collection of input definitions |
+| type | Data type of input (currently only string) | Yes | `"string"` |
+| description | Purpose of the input | Yes | `"Description of input1"` |
+| required | Whether input is mandatory | Yes | `true` or `false` |
+| example | Sample input value | No | `"Example value for input1"` |
 
-| **Component**   | **Description**               | **Required** | **Example**                              |
-| --------------- | ----------------------------- | ------------ | ---------------------------------------- |
-| **Version**     | Flow specification version    | Yes          | `"0.1.0"`                                |
-| **Flow Type**   | Must be specified as compound | Yes          | `"compound"`                             |
-| **Name**        | Unique identifier             | Yes          | `"your-flow-name"`                       |
-| **Description** | Purpose and functionality     | Yes          | `"Multi-stage data processing pipeline"` |
-| **Author**      | Creator's username            | Yes          | `"your-username"`                        |
-| **Tags**        | Categorization keywords       | No           | `["processing", "analysis"]`             |
-| **Privacy**     | Access control                | Yes          | `true` or `false`                        |
-| **Workflow**    | Processing stages definition  | Yes          | Map of flow stages                       |
-| **Output**      | Result combination rules      | Yes          | Ordered list of stage outputs            |
+### Workflow Configuration 🔧
 
----
+Each Compound Flow must define a workflow consisting of multiple processing stages. There are two types of workflow stages:
 
-## 🛠️ Workflow Configuration
+#### Elemental Stage Configuration 🔌
 
-Each stage in a Compound Flow's workflow can be either:
+| Component | Description | Required | Example |
+| --- | --- | --- | --- |
+| type | Must be "elemental" | Yes | `"elemental"` |
+| flow_name | Reference to existing Elemental Flow | Yes | `"author/flow-name"` |
+| inputs | Mapping to flow inputs | Yes | Input mapping object |
+| depends_on | List of dependent stages | No | `["stage1", "stage2"]` |
 
-### 🔧 Custom Processing Stage:
+#### Custom Stage Configuration ⚙️
 
-- **Defined directly within the workflow** 📝
-- **Includes its own model, dataset, and prompt configurations** 📚🛠️
-- **Handles specialized processing requirements** 🛠️🔍
+| Component | Description | Required | Example |
+| --- | --- | --- | --- |
+| type | Must be "custom" | Yes | `"custom"` |
+| model | LLM configuration | Yes | Model settings object |
+| prompt | Processing instructions | Yes | Template with {input} placeholders |
+| inputs | Stage input parameters | Yes | Input mapping object |
+| dataset | RAG dataset configuration | No | `"author_name/dataset_name"` |
+| depends_on | List of dependent stages | No | `["stage1", "stage2"]` |
 
-### 🔗 Elemental Flow Integration:
+### Dependency Configuration 🔗
 
-- **References existing Elemental Flows** 🔄
-- **Uses standardized input/output mappings** 🔀🗺️
-- **Leverages pre-built functionality** ⚙️✨
+| Component | Description | Required | Example |
+| --- | --- | --- | --- |
+| depends_on | List of stages that must complete before execution | No | `["stage1", "stage2"]` |
 
----
+#### Execution Behavior ⚡
+- Stages without depends_on can execute in parallel
+- Stages with depends_on will wait for specified stages to complete
+- Multiple stages can depend on the same previous stage
 
-## 🏗️ Implementation Structure
+### Output Configuration 📤
 
-```yaml .yaml
+| Component | Description | Required | Example |
+| --- | --- | --- | --- |
+| output.value | List of stage outputs to combine | Yes | `[${stage1.outputs}, ${stage2.outputs}]` |
+
+## Basic Flow Structure 🏗️
+
+```yaml
+# Flow specification version
 version: "0.1.0"
 
+# Flow metadata and configuration
 metadata:
   flow_type: "compound"
   name: "your-flow-name"
-  description: "Complex data processing pipeline"
+  description: "Describe what this compound flow accomplishes"
   author: "your-username"
   tags: [tag1, tag2, tag3]
   private: true
 
+# Primary input definitions
 inputs:
   prime_input_1:
     type: string
-    description: "Primary data for processing"
+    description: "What this input is used for"
     required: true
-    example: "Raw text data"
+    example: "Example value"
   prime_input_2:
     type: string
-    description: "Processing parameters"
+    description: "Description of this input"
     required: false
-    example: "Processing configuration"
+    example: "Example"
 
+# Workflow definition
 workflow:
-  # 🔧 Custom processing stage
-  data_preparation:
-    type: custom
+  # Elemental Flow stage - starts immediately
+  first_flow:
+    type: "elemental"
+    flow_name: "john_doe/first_elemental_flow"
     inputs:
-      raw_data: ${inputs.prime_input_1}
-      parameters: ${inputs.prime_input_2}
+      abc: ${inputs.prime_input_1}
+      xyz: ${inputs.prime_input_2}
+
+  # Custom processing stage - starts immediately (parallel to first_flow)
+  second_flow:
+    type: "custom"
+    inputs:
+      input1: ${inputs.input_name}
+      model:
+        provider: "provider-name"
+        name: "model-name"
+      prompt: |
+        Your flow's primary instruction or role...
+        You can use {input1} placeholders to reference inputs.
+
+  # Waits for both first_flow and second_flow to complete
+  third_flow:
+    type: "custom"
+    depends_on: [first_flow, second_flow]
+    inputs:
+      input1: ${first_flow.output}
+      input2: ${second_flow.output}
     model:
       provider: "provider-name"
       name: "model-name"
+    dataset:
+      source: "author_name/dataset_name"
     prompt: |
-      Custom processing instructions...
-      Process {raw_data} using {parameters}...
+      Your flow's primary instruction or role...
+      You can use {input1} and {input2} placeholders to reference inputs.
 
-  # 🔗 Integrated Elemental Flow
-  analysis_stage:
-    type: elemental
-    flow_name: "author/analysis_flow"
-    depends_on: [data_preparation]
-    inputs:
-      prepared_data: ${data_preparation.output}
-
-  # 🔧 Another custom stage
-  result_formatting:
-    type: custom
-    depends_on: [analysis_stage]
-    inputs:
-      analysis_results: ${analysis_stage.output}
-    model:
-      provider: "provider-name"
-      name: "model-name"
-    prompt: |
-      Format the analysis results...
-      Transform {analysis_results} into final format...
-
+# Output configuration
 output:
   value:
-    - ${result_formatting.outputs}
+    - ${first_flow.outputs}
+    - ${second_flow.outputs}
+    - ${third_flow.outputs}
 
+# Flow documentation
 readme: |
-  Multi-stage processing pipeline that combines custom processing with pre-built analysis capabilities.
+  This is a detailed explanation of what your flow does.
 
-  ### 📌 Processing Stages:
-  1. **Data Preparation**: Custom preprocessing of input data
-  2. **Analysis**: Utilizes specialized analysis flow
-  3. **Result Formatting**: Custom formatting of final output
+  ### Features: 
+  - **Input 1**: Explain its purpose
+  - **Input 2**: Explain its optional use
 
-  ### 📋 Usage Requirements:
-  - Input data format specifications
-  - Processing parameter guidelines
-  - Output format details
+  ### Workflow Overview:
+  1. **First Flow**: Executes `john_doe/first_elemental_flow` with the provided inputs.
+  2. **Second Flow**: Runs in parallel with first flow
+  3. **Third Flow**: Depends on both previous flows, executes after they complete
+
+  ### Outputs:
+  - Combined outputs from all flows are returned in order.
 ```
 
----
+## Implementation Structure 🛠️
 
-## 🏆 Best Practices
+Compound Flows can either define custom processing logic within their workflow or integrate existing Elemental Flows, providing maximum flexibility for solving complex challenges. The workflow allows for:
 
-When developing **Compound Flows**, focus on:
-
-### 🏛️ Architecture Design
-
-- **Map out processing stages clearly** 
-- **Define stage dependencies explicitly** 
-- **Plan error handling strategies** 
-- **Consider performance implications** 
-
-### 🔧 Stage Implementation
-
-- **Choose between custom processing and Elemental Flows based on requirements** 
-- **Define clear input/output contracts between stages** 
-- **Implement proper error handling for each stage** 
-- **Document stage-specific requirements** 
-
-### 🧪 Testing and Maintenance
-
-- **Test each processing stage independently** 
-- **Validate entire processing pipeline** 
-- **Monitor performance metrics** 
-- **Maintain comprehensive documentation** 
-
----
-
-For detailed implementation guidance and advanced features, please refer to our complete **documentation** 📖🔗.
+1. Advanced Decision Making with conditional processing paths 🧠
+2. Custom Processing stages with direct model and prompt configurations ⚙️
+3. Integration of existing Elemental Flows for reusability 🔄
+4. Parallel execution of independent stages ⚡
+5. Sequential execution through depends_on configurations 🔗
+6. Flexible input/output mapping between stages 🔀
