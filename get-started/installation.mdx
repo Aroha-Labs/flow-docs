@@ -11,16 +11,21 @@ Before installing Mira Flows, make sure your system meets the following requirem
 
 1. **Python Environment**
 
-   - [Python 3.10](https://www.python.org/downloads/release/python-3100/) installed on your system
-   - pip package manager
-   - Virtual environment tool (recommended)
+   * [Python 3.10](https://www.python.org/downloads/release/python-3100/) installed on your system
+
+   * pip package manager
+
+   * Virtual environment tool (recommended)
 
 2. **Development Tools**
-   - A code editor or IDE
-   - Command-line interface access
-   - Git (recommended for version control)
 
----
+   * A code editor or IDE
+
+   * Command-line interface access
+
+   * Git (recommended for version control)
+
+***
 
 ## 🔐 Creating Your Mira Flows Account
 
@@ -28,23 +33,31 @@ Before installing Mira Flows, make sure your system meets the following requirem
   <Step title="Visit the Platform">
     Navigate to [console.mira.network](https://console.mira.network/) 🌐
   </Step>
-  <Step title="Sign Up">
-   - Click the "Sign Up" button
-   - Fill in your account details
-   - Verify your email address
-   - Complete your profile setup
-  </Step>
-  <Step title="Generate API Key">
-   - Navigate to Account Settings
-   - Find the **API Keys** section
-   - Click "Create New API Key"
-   - Name your key for easy identification
-   - ✅ **Copy and securely store your API key**
 
+  <Step title="Sign Up">
+    * Click the "Sign Up" button
+
+    * Fill in your account details
+
+    * Verify your email address
+
+    * Complete your profile setup
+  </Step>
+
+  <Step title="Generate API Key">
+    * Navigate to Account Settings
+
+    * Find the **API Keys** section
+
+    * Click "Create New API Key"
+
+    * Name your key for easy identification
+
+    * ✅ **Copy and securely store your API key**
   </Step>
 </Steps>
 
----
+***
 
 ## 🔄 Installing the SDK
 
@@ -60,19 +73,19 @@ pip install mira-sdk
 pip show mira-sdk
 ```
 
----
+***
 
 ## 📚 Configuration
 
 ### 🔹 Initialize the Client
 
 <CodeGroup>
-```python Python
-from mira_sdk import MiraClient
+  ```python Python
+  from mira_sdk import MiraClient
 
-client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+  client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
 
-````
+  ```
 </CodeGroup>
 
 ### 🔹 Environment Variables (Recommended)
@@ -83,7 +96,7 @@ client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
 MIRA_API_KEY=your_api_key_here
 ```
 
-2. Use it in your code:
+1. Use it in your code:
 
 ```python Python
 import os
@@ -94,8 +107,7 @@ load_dotenv()
 client = MiraClient(config={"API_KEY": os.getenv("MIRA_API_KEY")})
 ```
 
----
-
+***
 
 ## 🔧 Verifying Your Setup
 
@@ -110,8 +122,7 @@ except Exception as e:
     print(f"Error: {str(e)}")
 ```
 
----
-
+***
 
 ## 🚀 Next Steps
 
@@ -126,8 +137,7 @@ After successful installation, you can:
 3. **Create Your First Flow** 🌟
    Follow our guide on [building your own flow](/how-to-guides/building-elemental-flows).
 
----
-
+***
 
 ## ⚠ Troubleshooting
 
@@ -155,18 +165,8 @@ source mira-env/bin/activate  # On Windows: mira-env\Scripts\activate
 pip install mira-sdk
 ```
 
----
+***
 
-
-## 📞 Support
-
-If you encounter any issues:
-
-1. Check our [troubleshooting guide](https://docs.mira.network/troubleshooting)
-2. Visit our [support portal](https://support.mira.network)
-3. Contact our support team at [support@mira.network](mailto:support@mira.network)
-
----
+***
 
 🛡️ **Remember to keep your API key secure and never commit it directly to version control systems.**
-````
