@@ -1,87 +1,118 @@
 ---
-title: "Build Your Own Compound Flow"
-description: "Learn how to build your own flow using Mira Flows SDK"
+title: "Building Compound Flows"
+description: "Learn how to build your own compound flow using Mira Flows SDK"
 ---
 
 This guide explains how to **create, test, and deploy compound flows** that implement complex, multi-stage processing pipelines. **Compound flows** provide sophisticated capabilities for implementing business logic, custom processing stages, and integration with existing **elemental flows**. 🔄💡
-
----
-
-## 🎥 Video Tutorial
-
-For a visual walkthrough of this process, watch our explanation video: [**Building Compound Flows Tutorial**](#) 📹✨
-
----
 
 ## 🔄 Development Lifecycle
 
 Creating a **compound flow** follows a systematic process:
 
 <Steps>
-  <Step title="📝 **Configuration**: Define your compound flow using YAML"></Step>
-  <Step title="🧪 **Testing**: Validate the entire processing pipeline"></Step>
-  <Step title="🚀 **Deployment**: Make your flow available"></Step>
-  <Step title="▶️ **Execution**: Run your multi-stage workflow"></Step>
-  <Step title="🔄 **Updates**: Iterate and improve"></Step>
+  <Step title="📝 Configuration: Define your compound flow using YAML" />
+
+  <Step title="🧪 Testing: Validate the entire processing pipeline" />
+
+  <Step title="🚀 Deployment: Make your flow available" />
+
+  <Step title="▶️ Execution: Run your multi-stage flow in production" />
+
+  <Step title="🔄 Updates: Iterate and improve" />
 </Steps>
 
 Let's explore each step in detail.
 
----
+***
 
 ## 📝 Step 1: YAML Configuration
 
-```yaml .yaml
-version: "0.1.0"                                     # Flow specification version
+<CodeGroup>
+  ```yaml .yaml
+  # Flow specification version
+  version: "0.1.0"                                    # Flow specification version
 
-metadata:
-  flow_type: "compound"                              # Specifies this as a compound flow
-  name: "your-flow-name"                             # Unique identifier
-  description: "Complex data processing pipeline"
-  author: "your-username"                            # Your Mira Flows username
-  tags: [tag1, tag2, tag3]                           # Discovery keywords
-  private: true                                      # Access control setting
+  metadata:
+    flow_type: "compound"                             # Specifies this as a compound flow
+    name: "your-flow-name"                            # Unique identifier
+    description: "Describe what this compound flow accomplishes"
+    author: "your-username"                           # Your Mira Flows username
+    tags: [tag1, tag2, tag3]                         # Discovery keywords
+    private: true                                     # Access control setting
 
-inputs:
-  prime_input_1:                                     # Primary input parameter
-    type: string
-    description: "Primary data for processing"
-    required: true
-    example: "Raw text data"
-  prime_input_2:                                     # Secondary input parameter
-    type: string
-    description: "Processing parameters"
-    required: false
-    example: "Processing configuration"
+  inputs:
+    prime_input_1:                                    # Primary input parameter
+      type: string
+      description: "What this input is used for"
+      required: true
+      example: "Example value"
+    prime_input_2:                                    # Secondary input parameter
+      type: string
+      description: "Description of this input"
+      required: false
+      example: "Example"
 
-workflow:
-  data_preparation:                                  # Custom processing stage
-    type: custom
-    inputs:
-      raw_data: ${inputs.prime_input_1}
-      parameters: ${inputs.prime_input_2}
-    model:
-      provider: "provider-name"                      # e.g., anthropic, openai, meta, etc.
-      name: "model-name"                             # Specific model identifier
-    prompt: |
-      Custom processing instructions...
+  workflow:
+    # Elemental Flow stage - starts immediately
+    first_flow:                                       # First processing stage
+      type: "elemental"
+      flow_name: "john_doe/first_elemental_flow"
+      inputs:
+        abc: ${inputs.prime_input_1}
+        xyz: ${inputs.prime_input_2}
 
-  analysis_stage:                                    # Integration with elemental flow
-    type: elemental
-    flow_name: "author/analysis_flow"
-    depends_on: [data_preparation]
-    inputs:
-      prepared_data: ${data_preparation.output}
+    # Custom processing stage - starts immediately (parallel to first_flow)
+    second_flow:                                      # Parallel processing stage
+      type: "custom"
+      inputs:
+        input1: ${inputs.input_name}
+      model:
+        provider: "provider-name"                     # e.g., anthropic, openai, meta, etc.
+        name: "model-name"                            # Specific model identifier
+      prompt: |
+        Your flow's primary instruction or role...
+        You can use {input1} placeholders to reference inputs.
 
-output:
-  value:                                             # Combine outputs in order
-    - ${analysis_stage.outputs}
+    # Waits for both first_flow and second_flow to complete
+    third_flow:                                       
+      type: "custom"
+      depends_on: [first_flow, second_flow]  # Dependent on fist_flow and second_flow
+      inputs:
+        input1: ${first_flow.output} # uses output of first_flow as input
+        input2: ${second_flow.output} # uses output of second_flow as input
+      model:
+        provider: "provider-name"
+        name: "model-name"
+      dataset:
+        source: "author_name/dataset_name"
+      prompt: |
+        Your flow's primary instruction or role...
+        You can use {input1} and {input2} placeholders to reference inputs.
 
-readme: |
-  Multi-stage processing pipeline documentation...
-```
+  output:
+    value:                                           # Combine & customise outputs in order
+      - ${first_flow.outputs}
+      - ${second_flow.outputs}
+      - ${third_flow.outputs}
 
----
+  readme: |
+    This is a detailed explanation of what your flow does.
+
+    ### Features:
+    - **Input 1**: Explain its purpose
+    - **Input 2**: Explain its optional use
+
+    ### Workflow Overview:
+    1. **First Flow**: Executes `john_doe/first_elemental_flow` with the provided inputs
+    2. **Second Flow**: Runs in parallel with first flow
+    3. **Third Flow**: Depends on both previous flows, executes after they complete
+
+    ### Outputs:
+    - Combined outputs from all flows are returned in order
+  ```
+</CodeGroup>
+
+***
 
 ## 🧪 Step 2: Testing
 
@@ -106,7 +137,7 @@ except FlowError as e:
     print("Test failed:", str(e))                           # Handle test failure
 ```
 
----
+***
 
 ## 🚀 Step 3: Deployment
 
@@ -120,7 +151,7 @@ except FlowError as e:
     print(f"Deployment error: {str(e)}")                   # Handle deployment error
 ```
 
----
+***
 
 ## ▶️ Step 4: Execution
 
@@ -140,7 +171,7 @@ except FlowError as e:
     print("Execution error:", str(e))                      # Handle execution error
 ```
 
----
+***
 
 ## 🔄 Step 5: Updates
 
@@ -159,35 +190,4 @@ except FlowError as e:
 # In case you forget to bump the flow version, it will get bumped by default every time you deploy the same flow.
 ```
 
-By following these steps, you can **create, test, deploy, and manage** your own **custom compound flows** on the **Mira Flows** platform. This process allows you to **contribute to the Marketplace** and **continuously improve** your flows over time. 🌟🔧
-
----
-
-## 🏆 Best Practices
-
-When building your own **Compound Flow**, focus on:
-
-### 🏗️ Architecture Design
-
-- **Map out processing stages clearly**
-- **Define stage dependencies explicitly**
-- **Plan error handling strategies**
-- **Consider performance implications**
-
-### 🔧 Flow Implementation
-
-- **Choose appropriate models** based on your flow requirements
-- **Define clear input/output contracts** between stages
-- **Implement proper error handling** for each stage
-- **Document flow-specific requirements**
-
-### 🧪 Testing and Maintenance
-
-- **Test each processing stage independently**
-- **Validate the entire processing pipeline**
-- **Monitor performance metrics**
-- **Maintain comprehensive documentation**
-
----
-
-For comprehensive information about **compound flow development**, **advanced features**, and **best practices**, please refer to our complete **documentation** 📖🔗.
+By following these steps, you can **create, test, deploy, and manage** your own **custom compound flows** on the **Mira Flows** platform. 🌟🔧

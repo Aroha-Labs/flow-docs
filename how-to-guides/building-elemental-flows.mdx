@@ -1,117 +1,128 @@
 ---
-title: "Build Your Own Flow"
-description: "Learn how to build your own flow using Mira Flows SDK"
+description: "Learn how to build your own elemental flow using Mira Flows SDK"
+title: "Building Elemental Flows"
 ---
 
-Ensure your profile is complete and a username is saved to start building a flow on **Mira Flows**. 👤✅
+This guide explains how to **create, test, and deploy elemental flows** that implement focused, single-task processing. **Elemental flows** provide core functionality that can be used independently or as building blocks within compound flows. 🔄💡
 
----
+## 🔄 Development Lifecycle
 
-## 🛠️ Setting Up Flow Configuration
+Creating an **elemental flow** follows a systematic process:
 
-To create a **basic flow**, you need to define its configuration in a YAML file:
+<Steps>
+  <Step title="📝 **Configuration**: Define your elemental flow using YAML" />
 
-1. **Create a new file** named `flow.yaml`
-2. **Use the following structure** to define your flow:
+  <Step title="🧪 **Testing**: Validate the flow's functionality" />
 
-```yaml .yaml
-# Version format ex. "0.0.1"
-version: "your.version.here"
+  <Step title="🚀 **Deployment**: Make your flow available" />
 
-# Basic metadata for the agent
-metadata:
-  name: "your-flow-name"
-  description: "A brief description of your flow"
-  author: "your-username"                             # This username should match your account username
-  tags: [tag1, tag2, tag3, ...]                       # Tags are keywords used to categorize your flow
-  private: false                                      # Access control for your flows (true/false)
+  <Step title="▶️ **Execution**: Run your flow in production" />
 
+  <Step title="🔄 **Updates**: Iterate and improve" />
+</Steps>
 
-# Define the input variables required
-inputs:
-  input1:
-    type: string                                      # Currently we only support String format
-    description: "Description of input1"
-    required: true
-    example: "Example value for input1"
-  input2:
-    type: string
-    description: "Description of input2"
-    required: true
-    example: "Example value for input2"
+Let's explore each step in detail.
 
-# LLM configuration
-model:
-  provider: "provider-name"                           # e.g., anthropic, openai, meta, etc.
-  name: "model-name"
+***
 
-# Dataset configuration (Optional)
-dataset:
-  source: "author_name/dataset_name"                  # Make sure this dataset exists
+## 📝 Step 1: YAML Configuration
 
-# Prompt template configuration
-prompt: |
-  Your flow's primary instruction or role...
-  You can use {input1} and {input2} placeholders to reference inputs.
+<CodeGroup>
+  ```yaml .yaml
+  # Version format ex. "0.0.1"
+  version: "your.version.here"                            # Flow specification version
 
-# ReadME configuration
-readme: |
-  Your flow's readme...
-  You can use raw text or markdown here.
-```
+  # Basic metadata for the agent
+  metadata:
+    name: "your-flow-name"                               # Unique identifier
+    description: "A brief description of your flow"       # Flow purpose
+    author: "your-username"                              # Must match your account username
+    tags: [tag1, tag2, tag3, ...]                       # Keywords for categorization
+    private: false                                       # Access control setting
 
-You may refer to the **LLMs section** in [**Core Concepts**](./core-concepts.md) to view all the available LLMs. 📖🔗
+  # Define the input variables required
+  inputs:
+    input1:                                              # First input parameter
+      type: string                                       # Currently only String format
+      description: "Description of input1"
+      required: true
+      example: "Example value for input1"
+    input2:                                              # Second input parameter
+      type: string
+      description: "Description of input2"
+      required: true
+      example: "Example value for input2"
 
----
+  # LLM configuration
+  model:
+    provider: "provider-name"                            # e.g., anthropic, openai, meta, etc.
+    name: "model-name"                                   # Specific model identifier
 
-## 🧪 Testing and Deploying Your Flow
+  # Dataset configuration (Optional)
+  dataset:
+    source: "author_name/dataset_name"                   # Make sure this dataset exists
 
-### 🖥️ Local Testing
+  # Prompt template configuration
+  prompt: |
+    Your flow's primary instruction or role...
+    You can use {input1} and {input2} placeholders to reference inputs.
 
-Before deploying, it's important to **test your flow locally** to ensure it functions as expected:
+  # ReadME configuration
+  readme: |
+    Your flow's readme...
+    You can use raw text or markdown here.
+  ```
+</CodeGroup>
+
+***
+
+## 🧪 Step 2: Testing
+
+**Test your elemental flow** before deployment:
 
 ```python Python
 from mira_sdk import MiraClient, Flow
 
-client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})     # Initialize Mira Client
 
 # Basic test
-flow = Flow(source="/path/to/your.yaml")
-input_dict = {"key": "value"}
-response = client.flow.test(flow, input_dict)
+flow = Flow(source="/path/to/your.yaml")                    # Load flow configuration
+input_dict = {"key": "value"}                               # Prepare test input
+response = client.flow.test(flow, input_dict)               # Test flow
 ```
 
-### 🚀 Deploying Your Flow
+***
 
-Once you're satisfied with your flow's performance, you can **deploy it** to the Mira Flows Marketplace:
+## 🚀 Step 3: Deployment
+
+**Deploy your elemental flow** to make it available:
 
 ```python Python
 from mira_sdk import MiraClient, Flow
 from mira_sdk.exceptions import FlowError
 
-client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})     # Initialize client
 
-# Test the flow locally
-flow = Flow(source="/path/to/your.yaml")
+flow = Flow(source="/path/to/your.yaml")                    # Load flow
 try:
-    client.flow.deploy(flow)
+    client.flow.deploy(flow)                                # Deploy to platform
 except FlowError as e:
-    print(f"Error occurred: {str(e)}")
+    print(f"Error occurred: {str(e)}")                      # Handle deployment error
 ```
 
----
+***
 
-## 🌐 Using Your Deployed Flow
+## ▶️ Step 4: Execution
 
-Once you've deployed your flow, you can **use it** just like any other Marketplace flow. You have the flexibility to use either the **latest version** or a **specific version** of your flow.
+After deployment, **execute your elemental flow**:
 
 ```python Python
 from mira_sdk import MiraClient, Flow
 
-client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})     # Initialize client
 
-version = "1.0.0"
-input_data = {"key": "value"}
+version = "1.0.0"                                           # Optional specific version
+input_data = {"key": "value"}                              # Execution input
 
 # If no version is provided, it'll use the latest version by default
 if version:
@@ -119,75 +130,33 @@ if version:
 else:
     flow_name = "author/your-flow-name"
 
-result = client.flow.execute(flow_name, input_data)
+result = client.flow.execute(flow_name, input_data)         # Execute flow
 print(result)
 ```
 
-### 📜 Listing Available Versions
+***
 
-If you need to **see what versions are available** for your flow:
+## 🔄 Step 5: Updates
 
-```python Python
-from mira_sdk import MiraClient
-
-client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
-client.flow.get_all_versions("author/flow_name")
-```
-
-### 🔄 Updating and Deploying Again
-
-You can **edit various aspects** of your flow, including its configuration, prompt, and parameters:
+When you need to **modify your elemental flow**:
 
 ```python Python
 from mira_sdk import Flow, MiraClient
 from mira_sdk.exceptions import FlowError
 
-client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})     # Initialize client
 
-# Load your existing flow
-flow = client.flow.get("author/flow_name")
-
-# Save your flow to a local YAML file
-flow.save("/path/to/flow.yaml")
-
-# You may then edit your flow.yaml file
+# Load existing flow
+flow = client.flow.get("author/flow_name")                  # Get current version
+flow.save("/path/to/flow.yaml")                            # Save for editing
 
 # Deploy updated flow
 try:
-    client.flow.deploy(flow)
+    client.flow.deploy(flow)                                # Deploy new version
 except FlowError as e:
-    print(f"Error occurred: {str(e)}")
+    print(f"Error occurred: {str(e)}")                      # Handle update error
 
 # In case you forget to bump the flow version, it will get bumped by default every time you deploy the same flow.
 ```
 
-By following these steps, you can **create, test, deploy, and manage** your own **custom flows** on the **Mira Flows** platform. This process allows you to **contribute to the Marketplace** and **continuously improve** your flows over time. 🌟🔧
-
----
-
-## 🏆 Best Practices
-
-When building your own **Flow**, focus on:
-
-### 🏗️ Architecture Design
-- **Map out processing stages clearly** 🗺️
-- **Define stage dependencies explicitly** 🔗
-- **Plan error handling strategies** 🛡️
-- **Consider performance implications** ⚡
-
-### 🔧 Flow Implementation
-- **Choose appropriate models** based on your flow requirements 🤖
-- **Define clear input/output contracts** between stages 📄
-- **Implement proper error handling** for each stage ⚠️
-- **Document flow-specific requirements** 📝
-
-### 🧪 Testing and Maintenance
-- **Test each processing stage independently** 🧪
-- **Validate the entire processing pipeline** ✅
-- **Monitor performance metrics** 📊
-- **Maintain comprehensive documentation** 📚
-
----
-
-For detailed implementation guidance and advanced features, please refer to the official **Mira Flows documentation** 📖🔗 and **API reference**.
-
+By following these steps, you can **create, test, deploy, and manage** your own **custom elemental flows** on the **Mira Flows** platform. This process allows you to **contribute to the Marketplace** and **continuously improve** your flows over time. 🌟🔧

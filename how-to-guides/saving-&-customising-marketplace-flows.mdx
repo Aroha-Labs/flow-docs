@@ -5,7 +5,7 @@ description: "Learn how to save flows from the marketplace and customize them ac
 
 This guide explains how to **save flows from the marketplace** and **customize them** according to your specific requirements. 🛠️✨
 
----
+***
 
 ## 💾 Saving a Flow
 
@@ -24,7 +24,7 @@ flow = client.flow.get("author/flow_name")
 flow.save("/path/to/flow.yaml")
 ```
 
----
+***
 
 ## ✂️ Customizing Your Flow
 
@@ -36,7 +36,7 @@ Update the flow's basic information to reflect your ownership and purpose:
 
 ```yaml .yaml
 metadata:
-  name: "your-customized-flow-name"          # Unique identifier
+  name: "your-customized-flow-name"          # Rename flow 
   description: "Your modified description"   # Flow description
   author: "your-username"                    # Your Mira Flows username
   tags: [your, custom, tags]                 # Discovery keywords
@@ -76,7 +76,7 @@ model:
   name: "your-preferred-model"                   # Specific model identifier
 ```
 
----
+***
 
 ## 🧪 Testing Your Customized Flow
 
@@ -93,7 +93,7 @@ test_input = {"custom_input": "test value"}
 response = client.flow.test(modified_flow, test_input)
 ```
 
----
+***
 
 ## 🚀 Deploying Your Custom Flow
 
@@ -105,34 +105,3 @@ client.flow.deploy(modified_flow)
 ```
 
 For more detailed information about **customization options** and **best practices**, please refer to our complete **documentation** 📖🔗.
-
----
-
-## 🏆 Best Practices
-
-When **saving and customizing Marketplace Flows**, focus on:
-
-### 🛠️ Customization Strategies
-- **Understand the original flow's functionality** to make informed modifications
-- **Maintain clear documentation** of your changes for future reference
-- **Ensure compatibility** with other flows and datasets you may use
-
-### 🧩 Integration Tips
-- **Leverage existing components** within the flow to enhance functionality
-- **Test each customization** step thoroughly to identify issues early
-- **Use descriptive names** for your customized flows to avoid confusion
-
-### 📈 Performance Optimization
-- **Optimize input data** to improve flow efficiency and output quality
-- **Monitor flow execution** to identify and address performance bottlenecks
-- **Regularly update** your flows to incorporate the latest features and improvements
-
-### 🔒 Security Considerations
-- **Secure your API keys** and credentials to protect your flows
-- **Control access** to your customized flows by setting appropriate privacy settings
-- **Validate input data** to prevent potential security vulnerabilities
-
----
-
-For additional details on implementation and advanced features, please refer to the official **Mira Flows documentation** 📖🔗 and **API reference**.
-

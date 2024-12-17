@@ -5,34 +5,36 @@ description: "Step-by-step guide to installing and setting up Mira Flows SDK for
 
 Datasets in **Mira Flows** support **Retrieval-Augmented Generation (RAG)** to enhance flows with specific knowledge. This capability allows flows to leverage custom knowledge bases for improved accuracy and contextual awareness in their responses. 🤖📈
 
----
+***
 
 ## 📋 Dataset Attributes
-<br></br>
 
-| **Component**    | **Description**                  | **Required**    | **Example**                         |
-| ---------------- | -------------------------------- | --------------- | ----------------------------------- |
-| **Name**         | Unique identifier for dataset    | Yes             | `"author/dataset_name"`             |
-| **Description**  | Purpose and content overview     | No              | `"Optional description"`            |
-| **Source Type**  | Type of data being added         | Yes             | `"url"` or `"file_path"`            |
-| **Source Path**  | Location of source data          | Yes             | `"example.com"` or `"path/to/file"` |
-| **Author**       | Creator's username               | Yes             | `"your-username"`                   |
+<br />
 
----
+| **Component**   | **Description**               | **Required** | **Example**                         |
+| --------------- | ----------------------------- | ------------ | ----------------------------------- |
+| **Name**        | Unique identifier for dataset | Yes          | `"author/dataset_name"`             |
+| **Description** | Purpose and content overview  | No           | `"Optional description"`            |
+| **Source Type** | Type of data being added      | Yes          | `"url"` or `"file_path"`            |
+| **Source Path** | Location of source data       | Yes          | `"example.com"` or `"path/to/file"` |
+| **Author**      | Creator's username            | Yes          | `"your-username"`                   |
+
+***
 
 ## 🗂️ Supported File Formats
-<br></br>
 
-| **Format**         | **Description**     | **Processing Method**                   |
-| ------------------ | ------------------- | --------------------------------------- |
-| **PDF (.pdf)**     | Document files      | Text extraction from document           |
-| **Markdown (.md)** | Formatted text      | Text extraction from document           |
-| **URL**            | Web content         | Web content scraping                    |
-| **CSV (.csv)**     | URL listings        | URL extraction and content scraping     |
-| **Text (.txt)**    | Plain text          | Direct text extraction                  |
-| **Zip (.zip)**     | Compressed files    | Processing of contained supported files |
+<br />
 
----
+| **Format**         | **Description**  | **Processing Method**                   |
+| ------------------ | ---------------- | --------------------------------------- |
+| **PDF (.pdf)**     | Document files   | Text extraction from document           |
+| **Markdown (.md)** | Formatted text   | Text extraction from document           |
+| **URL**            | Web content      | Web content scraping                    |
+| **CSV (.csv)**     | URL listings     | URL extraction and content scraping     |
+| **Text (.txt)**    | Plain text       | Direct text extraction                  |
+| **Zip (.zip)**     | Compressed files | Processing of contained supported files |
+
+***
 
 ## 🛠️ Creating and Configuring Datasets
 
@@ -66,40 +68,4 @@ dataset:
   source: "author/dataset_name"
 ```
 
----
-
-## 🏆 Best Practices
-
-When working with datasets for **RAG**, consider these key practices:
-
-### 📈 Data Quality
-
-- **Ensure data sources are reliable** ✅
-- **Maintain up-to-date content** 🔄
-- **Verify file format compatibility** 📂
-- **Document data sources properly** 📝
-
-### 🗄️ Dataset Management
-
-- **Regular content updates** 🔄
-- **Monitoring of retrieval quality** 📊
-- **Optimization of chunk settings** ⚙️
-- **Performance tracking** 📈
-
-### 📄 Documentation
-
-- **Document data sources** 📝
-- **Maintain version history** 📚
-- **Record processing methods** 🛠️
-- **Note any data limitations** ⚠️
-
-### ⚡ Performance Considerations
-
-- **Optimize chunk sizes** 📏
-- **Monitor retrieval times** ⏱️
-- **Balance accuracy and speed** ⚖️
-- **Regular performance reviews** 🔍      
-
----
-
-For additional details on implementation and advanced features, please refer to the official **Mira Flows documentation** 📖🔗 and **API reference**.
+***

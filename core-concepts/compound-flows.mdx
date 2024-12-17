@@ -80,93 +80,95 @@ Each Compound Flow must define a workflow consisting of multiple processing stag
 
 ## Basic Flow Structure 🏗️
 
-```yaml
-# Flow specification version
-version: "0.1.0"
+<CodeGroup>
+  ```yaml .yaml
+  # Flow specification version
+  version: "0.1.0"
 
-# Flow metadata and configuration
-metadata:
-  flow_type: "compound"
-  name: "your-flow-name"
-  description: "Describe what this compound flow accomplishes"
-  author: "your-username"
-  tags: [tag1, tag2, tag3]
-  private: true
+  # Flow metadata and configuration
+  metadata:
+    flow_type: "compound"
+    name: "your-flow-name"
+    description: "Describe what this compound flow accomplishes"
+    author: "your-username"
+    tags: [tag1, tag2, tag3]
+    private: true
 
-# Primary input definitions
-inputs:
-  prime_input_1:
-    type: string
-    description: "What this input is used for"
-    required: true
-    example: "Example value"
-  prime_input_2:
-    type: string
-    description: "Description of this input"
-    required: false
-    example: "Example"
+  # Primary input definitions
+  inputs:
+    prime_input_1:
+      type: string
+      description: "What this input is used for"
+      required: true
+      example: "Example value"
+    prime_input_2:
+      type: string
+      description: "Description of this input"
+      required: false
+      example: "Example"
 
-# Workflow definition
-workflow:
-  # Elemental Flow stage - starts immediately
-  first_flow:
-    type: "elemental"
-    flow_name: "john_doe/first_elemental_flow"
-    inputs:
-      abc: ${inputs.prime_input_1}
-      xyz: ${inputs.prime_input_2}
+  # Workflow definition
+  workflow:
+    # Elemental Flow stage - starts immediately
+    first_flow:
+      type: "elemental"
+      flow_name: "john_doe/first_elemental_flow"
+      inputs:
+        abc: ${inputs.prime_input_1}
+        xyz: ${inputs.prime_input_2}
 
-  # Custom processing stage - starts immediately (parallel to first_flow)
-  second_flow:
-    type: "custom"
-    inputs:
-      input1: ${inputs.input_name}
+    # Custom processing stage - starts immediately (parallel to first_flow)
+    second_flow:
+      type: "custom"
+      inputs:
+        input1: ${inputs.input_name}
+        model:
+          provider: "provider-name"
+          name: "model-name"
+        prompt: |
+          Your flow's primary instruction or role...
+          You can use {input1} placeholders to reference inputs.
+
+    # Waits for both first_flow and second_flow to complete
+    third_flow:
+      type: "custom"
+      depends_on: [first_flow, second_flow]
+      inputs:
+        input1: ${first_flow.output}
+        input2: ${second_flow.output}
       model:
         provider: "provider-name"
         name: "model-name"
+      dataset:
+        source: "author_name/dataset_name"
       prompt: |
         Your flow's primary instruction or role...
-        You can use {input1} placeholders to reference inputs.
+        You can use {input1} and {input2} placeholders to reference inputs.
 
-  # Waits for both first_flow and second_flow to complete
-  third_flow:
-    type: "custom"
-    depends_on: [first_flow, second_flow]
-    inputs:
-      input1: ${first_flow.output}
-      input2: ${second_flow.output}
-    model:
-      provider: "provider-name"
-      name: "model-name"
-    dataset:
-      source: "author_name/dataset_name"
-    prompt: |
-      Your flow's primary instruction or role...
-      You can use {input1} and {input2} placeholders to reference inputs.
+  # Output configuration
+  output:
+    value:
+      - ${first_flow.outputs}
+      - ${second_flow.outputs}
+      - ${third_flow.outputs}
 
-# Output configuration
-output:
-  value:
-    - ${first_flow.outputs}
-    - ${second_flow.outputs}
-    - ${third_flow.outputs}
+  # Flow documentation
+  readme: |
+    This is a detailed explanation of what your flow does.
 
-# Flow documentation
-readme: |
-  This is a detailed explanation of what your flow does.
+    ### Features: 
+    - **Input 1**: Explain its purpose
+    - **Input 2**: Explain its optional use
 
-  ### Features: 
-  - **Input 1**: Explain its purpose
-  - **Input 2**: Explain its optional use
+    ### Workflow Overview:
+    1. **First Flow**: Executes `john_doe/first_elemental_flow` with the provided inputs.
+    2. **Second Flow**: Runs in parallel with first flow
+    3. **Third Flow**: Depends on both previous flows, executes after they complete
 
-  ### Workflow Overview:
-  1. **First Flow**: Executes `john_doe/first_elemental_flow` with the provided inputs.
-  2. **Second Flow**: Runs in parallel with first flow
-  3. **Third Flow**: Depends on both previous flows, executes after they complete
-
-  ### Outputs:
-  - Combined outputs from all flows are returned in order.
-```
+    ### Outputs:
+    - Combined outputs from all flows are returned in order.
+  ```
+</CodeGroup>
 
 ## Implementation Structure 🛠️
 
