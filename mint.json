@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Flow Docs",
+  "name": "Mira Flows",
   "logo": {
     "dark": "/logo/logo-on-dark.svg",
     "light": "/logo/logo-on-light.svg"
