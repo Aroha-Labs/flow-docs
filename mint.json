@@ -19,7 +19,7 @@
     "style": "gradient"
   },
   "sidebar": {
-    "items": ["line", "undecorated"]
+    "items": "line"
   },
   "topbarLinks": [
     {
