@@ -28,6 +28,7 @@
     "name": "Marketplace",
     "url": "https://console.mira.network"
   },
+  "sidebar":{"items":"undecorated"},
   "navigation": [
     {
       "group": "Get Started",
