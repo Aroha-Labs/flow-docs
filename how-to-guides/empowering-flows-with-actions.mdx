@@ -21,7 +21,7 @@ First, let's set up your desired platform integration in Composio:
 
 ### 2. Obtain Integration Details
 
-After setting up the integration, you'll need two key pieces of information:
+After setting up the integration, you'll need 3 key pieces of information:
 
 1. **API Key**:
 
@@ -31,7 +31,13 @@ After setting up the integration, you'll need two key pieces of information:
 
    * You can use the default API key or create a new one
 
-2. **Entity ID**:
+2. **Enum**:
+
+   * Go to the actions of the app you wnt to integrate with&#x20;
+
+   * Copy the "Enum" of the action you wish to perform
+
+3. **Entity ID**:
 
    * This is generated after you complete the platform integration
 
@@ -41,7 +47,7 @@ Here's an interactive demo showing the process:
 
 <Frame>
   <iframe
-    src="https://app.supademo.com/embed/cm4vkqzc70e1cvlryoo6x9gem?v_email=EMAIL&embed_v=2"
+    src="https://app.supademo.com/embed/cm4vmuwe20ewnvlry0qep5yql?embed_v=2"
     loading="lazy"
     title="Composio Demo"
     allow="clipboard-write"
@@ -50,10 +56,10 @@ Here's an interactive demo showing the process:
     mozallowfullscreen="true"
     allowfullscreen
     style={{
-width: '100%',
-height: '600px',
-border: 'none'
-}}
+    width: '100%',
+    height: '600px',
+    border: 'none'
+  }}
   />
 </Frame>
 
@@ -82,10 +88,10 @@ response = client.flow.test(
     flow,
     input_dict,
     ComposioConfig(
-        COMPOSIO_API_KEY="YOUR_COMPOSIO_API_KEY",  # From step 2
-        ACTION="PLATFORM_ACTION",  # e.g., TWITTER_CREATION_OF_A_POST
+        COMPOSIO_API_KEY="YOUR_COMPOSIO_API_KEY", #
+        ACTION="PLATFORM_ACTION",  # Enum of the action you wisht o perform
         TASK="Action specific task - {content}",
-        ENTITY_ID="YOUR_ENTITY_ID"  # From step 2
+        ENTITY_ID="YOUR_ENTITY_ID"  # 
     )
 )
 ```
