@@ -27,16 +27,15 @@
   },
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open",
-      "url": "get-started/introduction"
-    },
-    {
       "name": "Community",
       "icon": "discord",
       "url": "mailto:support@arohalabs.com"
     }
   ],
+  "sidebar": {
+    "style": "line",
+    "textSelection": true
+  },
   "navigation": [
     {
       "group": "Get Started",
