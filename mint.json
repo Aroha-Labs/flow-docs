@@ -1,12 +1,14 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Mira Flows",
-  "theme":"venus",
+  "theme": "venus",
   "logo": {
     "dark": "/logo/logo-on-dark.svg",
-    "light": "/logo/logo-on-light.svg"
+    "light": "/logo/logo-on-light.svg",
+    "href": "https://console.mira.network"
   },
   "favicon": "/mira_favicon.svg",
+  "layout": "sidenav",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -18,9 +20,6 @@
   },
   "background": {
     "style": "gradient"
-  },
-  "sidebar": {
-    "items": "undecorated"
   },
   "topbarLinks": [
     {
@@ -37,7 +36,6 @@
       "name": "Community",
       "icon": "discord",
       "url": "mailto:support@arohalabs.com"
-      "isDefaultHidden":"true"
     }
   ],
   "navigation": [
@@ -54,8 +52,7 @@
       "pages": [
         "core-concepts/elemental-flows",
         "core-concepts/compound-flows",
-        "core-concepts/datasets-and-rag",
-        "core-concepts/available-models"
+        "core-concepts/datasets-and-rag"
       ]
     },
     {
@@ -73,6 +70,40 @@
     "x": "https://x.com/Mira_Network",
     "github": "https://github.com/Aroha-Labs/flow-docs",
     "linkedin": "https://www.linkedin.com/company/mira-aroha-labs"
+  },
+  "footer": {
+    "links": [
+      {
+        "title": "Resources",
+        "links": [
+          {
+            "label": "Blog",
+            "url": "https://mira.network/blog"
+          },
+          {
+            "label": "Documentation",
+            "url": "https://docs.mira.network"
+          },
+          {
+            "label": "Console",
+            "url": "https://console.mira.network"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "About Us",
+            "url": "https://mira.network/about"
+          },
+          {
+            "label": "Contact",
+            "url": "mailto:support@arohalabs.com"
+          }
+        ]
+      }
+    ]
   },
   "feedback": {
     "thumbsRating": true,
