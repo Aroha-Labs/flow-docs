@@ -31,6 +31,13 @@
     "name": "Get Started",
     "url": "https://console.mira.network"
   },
+  "anchors": [
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "mailto:support@arohalabs.com"
+    }
+  ],
   "navigation": [
     {
       "group": "Get Started",
@@ -57,14 +64,6 @@
         "how-to-guides/building-compound-flows",
         "how-to-guides/implementing-rag-capabilities",
         "how-to-guides/saving-&-customising-marketplace-flows"
-      ]
-    },
-    {
-      "group": "Examples",
-      "pages": [
-        "examples/basic-flows",
-        "examples/advanced-flows",
-        "examples/rag-examples"
       ]
     }
   ],
