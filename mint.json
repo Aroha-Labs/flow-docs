@@ -39,9 +39,9 @@
   ],
   "anchors": [
     {
-      "name": "Support",
-      "icon": "message",
-      "url": "mailto:support@arohalabs.com"
+      "name": "Community",
+      "icon": "discourse",
+      "url": ""
     }
   ],
   "search": {
