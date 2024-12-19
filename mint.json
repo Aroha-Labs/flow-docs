@@ -36,6 +36,7 @@
       "name": "Community",
       "icon": "discord",
       "url": "mailto:support@arohalabs.com"
+      "isDefaultHidden":"true"
     }
   ],
   "navigation": [
