@@ -62,7 +62,8 @@
         "how-to-guides/building-elemental-flows",
         "how-to-guides/building-compound-flows",
         "how-to-guides/implementing-rag-capabilities",
-        "how-to-guides/saving-&-customising-marketplace-flows"
+        "how-to-guides/saving-&-customising-marketplace-flows",
+        "how-to-guides/empower-flows-with-actions"
       ]
     }
   ],
