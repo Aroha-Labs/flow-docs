@@ -1,7 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Mira Flows",
-  "theme": "venus",
   "logo": {
     "dark": "/logo/logo-on-dark.svg",
     "light": "/logo/logo-on-light.svg"
@@ -16,37 +15,28 @@
       "to": "#07C983"
     }
   },
-  "seo": {
-    "indexHiddenPages": false
-  },
-  "modeToggle": {
-    "default": "dark",
-    "isHidden": false
-  },
-  "feedback": {
-    "suggestEdit": true,
-    "raiseIssue": true,
-    "thumbsRating": true
-  },
-  "primaryTab": {
-    "name": "Get Started"
-  },
-  "tabs": [
+  "topbarLinks": [
     {
-      "name": "Examples",
-      "url": "examples"
+      "name": "Contact Us",
+      "url": "mailto:support@arohalabs.com"
     }
   ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://console.mira.network"
+  },
   "anchors": [
     {
+      "name": "Documentation",
+      "icon": "book-open",
+      "url": "get-started/introduction"
+    },
+    {
       "name": "Community",
-      "icon": "discourse",
-      "url": ""
+      "icon": "discord",
+      "url": "mailto:support@arohalabs.com"
     }
   ],
-  "search": {
-    "prompt": "Search Mira Flows docs"
-  },
   "navigation": [
     {
       "group": "Get Started",
@@ -80,5 +70,15 @@
     "x": "https://x.com/Mira_Network",
     "github": "https://github.com/Aroha-Labs/flow-docs",
     "linkedin": "https://www.linkedin.com/company/mira-aroha-labs"
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true
+  },
+  "search": {
+    "prompt": "Search documentation..."
+  },
+  "modeToggle": {
+    "default": "dark"
   }
 }
