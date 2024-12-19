@@ -18,7 +18,9 @@
   "background": {
     "style": "gradient"
   },
-  "sidebar":{"itmes":"border"},
+  "sidebar": {
+    "items": ["line", "undecorated"]
+  },
   "topbarLinks": [
     {
       "name": "Contact Us",
