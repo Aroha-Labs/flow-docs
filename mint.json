@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Mira Flows",
-  "theme":"venus",
+  "theme": "venus",
   "logo": {
     "dark": "/logo/logo-on-dark.svg",
     "light": "/logo/logo-on-light.svg"
@@ -16,20 +16,37 @@
       "to": "#07C983"
     }
   },
-  "background": {
-    "style": "gradient"
+  "seo": {
+    "indexHiddenPages": false
   },
-  "topbarLinks": [
+  "modeToggle": {
+    "default": "dark",
+    "isHidden": false
+  },
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true,
+    "thumbsRating": true
+  },
+  "primaryTab": {
+    "name": "Get Started"
+  },
+  "tabs": [
+    {
+      "name": "Examples",
+      "url": "examples"
+    }
+  ],
+  "anchors": [
     {
       "name": "Support",
+      "icon": "message",
       "url": "mailto:support@arohalabs.com"
     }
   ],
-  "topbarCtaButton": {
-    "name": "Marketplace",
-    "url": "https://console.mira.network"
+  "search": {
+    "prompt": "Search Mira Flows docs"
   },
-  "sidebar":{"items":"undecorated"},
   "navigation": [
     {
       "group": "Get Started",
