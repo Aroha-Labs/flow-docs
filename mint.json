@@ -63,7 +63,7 @@
         "how-to-guides/building-compound-flows",
         "how-to-guides/implementing-rag-capabilities",
         "how-to-guides/saving-&-customising-marketplace-flows",
-        "how-to-guides/empower-flows-with-actions"
+        "how-to-guides/empowering-flows-with-actions"
       ]
     }
   ],
@@ -72,40 +72,7 @@
     "github": "https://github.com/Aroha-Labs/flow-docs",
     "linkedin": "https://www.linkedin.com/company/mira-aroha-labs"
   },
-  "footer": {
-    "links": [
-      {
-        "title": "Resources",
-        "links": [
-          {
-            "label": "Blog",
-            "url": "https://mira.network/blog"
-          },
-          {
-            "label": "Documentation",
-            "url": "https://docs.mira.network"
-          },
-          {
-            "label": "Console",
-            "url": "https://console.mira.network"
-          }
-        ]
-      },
-      {
-        "title": "Company",
-        "links": [
-          {
-            "label": "About Us",
-            "url": "https://mira.network/about"
-          },
-          {
-            "label": "Contact",
-            "url": "mailto:support@arohalabs.com"
-          }
-        ]
-      }
-    ]
-  },
+
   "feedback": {
     "thumbsRating": true,
     "suggestEdit": true
