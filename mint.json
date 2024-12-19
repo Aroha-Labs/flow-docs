@@ -32,10 +32,6 @@
       "url": "mailto:support@arohalabs.com"
     }
   ],
-  "sidebar": {
-    "style": "line",
-    "textSelection": true
-  },
   "navigation": [
     {
       "group": "Get Started",
@@ -76,8 +72,5 @@
   },
   "search": {
     "prompt": "Search documentation..."
-  },
-  "modeToggle": {
-    "default": "dark"
   }
 }
