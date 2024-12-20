@@ -7,27 +7,27 @@ iconType: "light"
 
 This guide explains how to **create, test, and deploy elemental flows** that implement focused, single-task processing. **Elemental flows** provide core functionality that can be used independently or as building blocks within compound flows. 🔄💡
 
-## 🔄 Development Lifecycle
+## Development Lifecycle
 
 Creating an **elemental flow** follows a systematic process:
 
 <Steps>
-  <Step title="📝 Configuration: Define your elemental flow using YAML" />
+  <Step title="Configuration: Define your elemental flow using YAML" />
 
-  <Step title="🧪 Testing: Validate the flow's functionality" />
+  <Step title="Testing: Validate the flow's functionality" />
 
-  <Step title="🚀 Deployment: Make your flow available" />
+  <Step title="Deployment: Make your flow available" />
 
-  <Step title="▶️ Execution: Run your flow in production" />
+  <Step title="Execution: Run your flow in production" />
 
-  <Step title="🔄 Updates: Iterate and improve" />
+  <Step title="Updates: Iterate and improve" />
 </Steps>
 
 Let's explore each step in detail.
 
 ***
 
-## 📝 Step 1: YAML Configuration
+## Step 1: YAML Configuration
 
 <CodeGroup>
   ```yaml .yaml
@@ -78,7 +78,7 @@ Let's explore each step in detail.
 
 ***
 
-## 🧪 Step 2: Testing
+## Step 2: Testing
 
 **Test your elemental flow** before deployment:
 
@@ -95,7 +95,7 @@ response = client.flow.test(flow, input_dict)               # Test flow
 
 ***
 
-## 🚀 Step 3: Deployment
+## Step 3: Deployment
 
 **Deploy your elemental flow** to make it available:
 
@@ -114,7 +114,7 @@ except FlowError as e:
 
 ***
 
-## ▶️ Step 4: Execution
+## Step 4: Execution
 
 After deployment, **execute your elemental flow**:
 
@@ -138,7 +138,7 @@ print(result)
 
 ***
 
-## 🔄 Step 5: Updates
+## Step 5: Updates
 
 When you need to **modify your elemental flow**:
 
@@ -162,3 +162,10 @@ except FlowError as e:
 ```
 
 By following these steps, you can **create, test, deploy, and manage** your own **custom elemental flows** on the **Mira Flows** platform. This process allows you to **contribute to the Marketplace** and **continuously improve** your flows over time. 🌟🔧
+
+### Example
+
+<Card title="Build Elemental Flows" icon="github" href="https://github.com/B-Venkatesh7210/building-your-own-flows">
+  Complete example showcasing how to build and customize your own 
+  elemental flows from scratch.
+</Card>

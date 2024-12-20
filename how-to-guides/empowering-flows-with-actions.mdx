@@ -45,6 +45,8 @@ After setting up the integration, you'll need 3 key pieces of information:
 
    * Find it in your "connected accounts" section under tools
 
+### 3. Step by Step Demo
+
 Here's an interactive demo showing the process:
 
 <Frame>
@@ -65,35 +67,75 @@ border: 'none'
   />
 </Frame>
 
-### 3. Implement in Code
+## Code Implementation
 
-Now that you have your API key and Entity ID, you can connect your Mira Flow with Composio:
+### ComposioConfig Attributes
+
+| Attribute | Description | Required |
+| --- | --- | --- |
+| COMPOSIO_API_KEY | Your Composio authentication key | Yes |
+| ACTION | Platform-specific action (e.g., "TWITTER_POST", "DISCORD_SEND") | Yes |
+| TASK | Natural language description including `{content}` placeholder | Yes |
+| ENTITY_ID | Platform-specific entity identifier | Yes |
+
+### Code Example
 
 ```python
 from mira_sdk.mira.client.mira_client import MiraClient
 from mira_sdk.mira.flow import Flow
 from mira_sdk.mira.integrations.composio import ComposioConfig
 
-# Initialize Mira client
+# Initialize Mira client with your API key
 client = MiraClient(config={"API_KEY": "YOUR_MIRA_API_KEY"})
 
-# Load your flow
+# Load your existing flow from YAML file
 flow = Flow(source="path/to/your/flow.yaml")
 
-# Configure input
+# Set up your flow's input parameters
 input_dict = {
     "user": "your_username"
 }
 
 # Execute flow with Composio integration
+# The flow's output will automatically replace {content} in the TASK
 response = client.flow.test(
     flow,
     input_dict,
     ComposioConfig(
-        COMPOSIO_API_KEY="YOUR_COMPOSIO_API_KEY", #
-        ACTION="PLATFORM_ACTION",  # Enum of the action you wisht o perform
-        TASK="Action specific task - {content}",
-        ENTITY_ID="YOUR_ENTITY_ID"  # 
+        COMPOSIO_API_KEY="YOUR_COMPOSIO_API_KEY",
+        ACTION="PLATFORM_ACTION",  # e.g., "TWITTER_POST", "DISCORD_SEND"
+        TASK="Action specific task - {content}",  # {content} is required and gets replaced with flow output
+        ENTITY_ID="YOUR_ENTITY_ID"  # Platform-specific identifier
     )
 )
+```
+
+### What Not to Do
+
+1. Don't forget `{content}` in TASK:
+```python
+# ❌ Wrong - missing {content}
+TASK="Post this message"
+
+# ✅ Correct
+TASK="Post this message: {content}"
+```
+
+2. Don't modify the `{content}` placeholder:
+```python
+# ❌ Wrong
+TASK="Send {message}"
+TASK="Post {text}"
+
+# ✅ Correct
+TASK="Send {content}"
+```
+
+3. Don't use multiple `{content}` placeholders:
+```python
+# ❌ Wrong
+TASK="Post {content} and then {content}"
+
+# ✅ Correct
+TASK="Post {content}"
 ```

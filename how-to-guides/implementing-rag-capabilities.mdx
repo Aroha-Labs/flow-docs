@@ -1,15 +1,15 @@
 ---
-title: "Implementing RAG Capabilities"
+title: "Implement RAG Capabilities"
 description: "Learn how to enhance your flows with Retrieval-Augmented Generation (RAG) using Mira Flows SDK"
 icon: "magnifying-glass"
 iconType: "light"
 ---
 
-### 🎥 Video Tutorial
+### Video Tutorial
 
 For a visual walkthrough of implementing **RAG**, watch our explanation video: [**RAG Implementation Tutorial**](#) 📹✨
 
-### 🤔 Understanding RAG Implementation
+### Understanding RAG Implementation
 
 **Retrieval-Augmented Generation (RAG)** enhances your flows with specific domain knowledge. The implementation process involves three main stages:
 
@@ -19,7 +19,7 @@ For a visual walkthrough of implementing **RAG**, watch our explanation video: [
 
 3. 🔗 **Link Dataset to Flow**: Connect the dataset to your flow, enabling it to leverage this information during processing.
 
-### 🆕 Creating Your Dataset
+### Creating Your Dataset
 
 Begin by establishing your knowledge base:
 
@@ -35,7 +35,7 @@ client.dataset.create(
 )
 ```
 
-### ➕ Adding Data Sources
+### Adding Data Sources
 
 Populate your dataset with information from various supported formats:
 
@@ -50,7 +50,7 @@ client.dataset.add_source("author/dataset_name", url="https://example.com/data")
 client.dataset.add_source("author/dataset_name", file_path="sources.csv")
 ```
 
-### 🔗 Linking Dataset to Flow
+### Linking Dataset to Flow
 
 Connect your dataset to an existing flow by modifying its configuration:
 
@@ -63,4 +63,9 @@ dataset:
 # Rest of your flow configuration remains unchanged
 ```
 
-***
+### Example
+
+<Card title="Implement RAG capabilities" icon="github" href="https://github.com/B-Venkatesh7210/configure-datasets">
+  Complete example showcasing how to set up and configure datasets for 
+  Retrieval Augmented Generation (RAG) capabilities.
+</Card>

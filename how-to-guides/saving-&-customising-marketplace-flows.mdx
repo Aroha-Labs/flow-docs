@@ -1,5 +1,5 @@
 ---
-title: "Saving and Customizing Marketplace Flows"
+title: "Save and Customize Marketplace Flows"
 description: "Learn how to save flows from the marketplace and customize them according to your specific requirements"
 icon: "floppy-disk"
 iconType: "light"
@@ -9,30 +9,30 @@ This guide explains how to **save flows from the marketplace** and **customize t
 
 ***
 
-## 💾 Saving a Flow
+## Saving a Flow
 
 When you find a useful flow in the **Marketplace**, you can **save it locally** for customization:
 
 ```python Python
 from mira_sdk import MiraClient
 
-# 🔑 Initialize client
+# Initialize client
 client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
 
-# 🏷️ Get the flow you want to customize
+# Get the flow you want to customize
 flow = client.flow.get("author/flow_name")
 
-# 💾 Save to local YAML file
+# Save to local YAML file
 flow.save("/path/to/flow.yaml")
 ```
 
 ***
 
-## ✂️ Customizing Your Flow
+## Customizing Your Flow
 
 After saving the flow locally, you can **modify the YAML file** according to your needs. Here are the **key areas** you can customize:
 
-### 📝 Modifying Metadata
+### Modifying Metadata
 
 Update the flow's basic information to reflect your ownership and purpose:
 
@@ -45,7 +45,7 @@ metadata:
   private: true                              # Access control setting (true/false)
 ```
 
-### 🎛️ Adjusting Inputs
+### Adjusting Inputs
 
 Modify input parameters to match your requirements:
 
@@ -58,7 +58,7 @@ inputs:
     example: "Your example value"                 # Example value
 ```
 
-### 📝 Updating the Prompt
+### Updating the Prompt
 
 Customize the prompt to achieve your desired output:
 
@@ -68,7 +68,7 @@ prompt: |
   You can use {custom_input} as a placeholder
 ```
 
-### 🤖 Modifying Model Settings
+### Modifying Model Settings
 
 Change the model configuration if needed:
 
@@ -80,7 +80,7 @@ model:
 
 ***
 
-## 🧪 Testing Your Customized Flow
+## Testing Your Customized Flow
 
 Before deployment, **test your modifications** to ensure everything works correctly:
 
@@ -97,7 +97,7 @@ response = client.flow.test(modified_flow, test_input)
 
 ***
 
-## 🚀 Deploying Your Custom Flow
+## Deploying Your Custom Flow
 
 Once you're satisfied with the modifications:
 
