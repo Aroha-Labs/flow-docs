@@ -9,7 +9,7 @@ Datasets in **Mira Flows** support **Retrieval-Augmented Generation (RAG)** to e
 
 ***
 
-## 📋 Dataset Attributes
+## Dataset Attributes
 
 <br />
 
@@ -23,7 +23,7 @@ Datasets in **Mira Flows** support **Retrieval-Augmented Generation (RAG)** to e
 
 ***
 
-## 🗂️ Supported File Formats
+## Supported File Formats
 
 <br />
 
@@ -38,9 +38,9 @@ Datasets in **Mira Flows** support **Retrieval-Augmented Generation (RAG)** to e
 
 ***
 
-## 🛠️ Creating and Configuring Datasets
+## Creating and Configuring Datasets
 
-### 🆕 Creating a Dataset
+### Creating a Dataset
 
 ```python Python
 from mira_sdk import MiraClient
@@ -51,7 +51,7 @@ client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
 client.dataset.create("author/dataset_name", "Optional description")
 ```
 
-### ➕ Adding Data Sources
+### Adding Data Sources
 
 ```python Python
 # Add URL to your dataset
@@ -61,7 +61,7 @@ client.dataset.add_source("author/dataset_name", url="example.com")
 client.dataset.add_source("author/dataset_name", file_path="path/to/my/file.csv")
 ```
 
-### 🔗 Linking Dataset with Flow
+### Linking Dataset with Flow
 
 Add the following configuration to your `flow.yaml` file:
 
