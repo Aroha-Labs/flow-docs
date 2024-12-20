@@ -21,16 +21,20 @@
   "background": {
     "style": "gradient"
   },
-  "topbarLinks": [
+
+  "tabs": [
     {
-      "name": "Contact Us",
-      "url": "mailto:support@arohalabs.com"
-    }
-  ],
-    "tabs": [
+      "name": "Documentation",
+      "url": "documentation"
+    },
     {
       "name": "Examples",
       "url": "examples"
+    },
+   
+    {
+      "name": "Changelog",
+      "url": "changelog"
     }
   ],
   "topbarCtaButton": {
@@ -48,28 +52,41 @@
     {
       "group": "Get Started",
       "pages": [
-        "get-started/introduction",
-        "get-started/installation",
-        "get-started/models"
+        "documentation/get-started/introduction",
+        "documentation/get-started/installation",
+        "documentation/get-started/models"
       ]
     },
     {
       "group": "Core Concepts",
       "pages": [
-        "core-concepts/elemental-flows",
-        "core-concepts/compound-flows",
-        "core-concepts/datasets-and-rag"
+        "documentation/core-concepts/elemental-flows",
+        "documentation/core-concepts/compound-flows",
+        "documentation/core-concepts/datasets-and-rag"
       ]
     },
     {
       "group": "How To Guides",
       "pages": [
-        "how-to-guides/using-marketplace-flows",
-        "how-to-guides/building-elemental-flows",
-        "how-to-guides/building-compound-flows",
-        "how-to-guides/implementing-rag-capabilities",
-        "how-to-guides/saving-&-customising-marketplace-flows",
-        "how-to-guides/empowering-flows-with-actions"
+        "documentation/how-to-guides/using-marketplace-flows",
+        "documentation/how-to-guides/building-elemental-flows",
+        "documentation/how-to-guides/building-compound-flows",
+        "documentation/how-to-guides/implementing-rag-capabilities",
+        "documentation/how-to-guides/saving-&-customising-marketplace-flows",
+        "documentation/how-to-guides/empowering-flows-with-actions"
+      ]
+    },
+    {
+      "group": "Examples",
+      "pages": [
+        "examples/examples"
+      ]
+    },
+
+    {
+      "group": "Changelog",
+      "pages": [
+        "changelog/product-updates"
       ]
     }
   ],
