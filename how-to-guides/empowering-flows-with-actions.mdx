@@ -35,7 +35,7 @@ After setting up the integration, you'll need 3 key pieces of information:
 
 2. **Enum**:
 
-   * Go to the actions of the app you wnt to integrate with&#x20;
+   * Go to the actions of the app you want to integrate with&#x20;
 
    * Copy the "Enum" of the action you wish to perform
 
@@ -71,12 +71,12 @@ border: 'none'
 
 ### ComposioConfig Attributes
 
-| Attribute | Description | Required |
-| --- | --- | --- |
-| COMPOSIO_API_KEY | Your Composio authentication key | Yes |
-| ACTION | Platform-specific action (e.g., "TWITTER_POST", "DISCORD_SEND") | Yes |
-| TASK | Natural language description including `{content}` placeholder | Yes |
-| ENTITY_ID | Platform-specific entity identifier | Yes |
+| Attribute          | Description                                                       | Required |
+| ------------------ | ----------------------------------------------------------------- | -------- |
+| COMPOSIO\_API\_KEY | Your Composio authentication key                                  | Yes      |
+| ACTION             | Platform-specific action (e.g., "TWITTER\_POST", "DISCORD\_SEND") | Yes      |
+| TASK               | Natural language description including `{content}` placeholder    | Yes      |
+| ENTITY\_ID         | Platform-specific entity identifier                               | Yes      |
 
 ### Code Example
 
@@ -113,6 +113,7 @@ response = client.flow.test(
 ### What Not to Do
 
 1. Don't forget `{content}` in TASK:
+
 ```python
 # ❌ Wrong - missing {content}
 TASK="Post this message"
@@ -121,7 +122,8 @@ TASK="Post this message"
 TASK="Post this message: {content}"
 ```
 
-2. Don't modify the `{content}` placeholder:
+1. Don't modify the `{content}` placeholder:
+
 ```python
 # ❌ Wrong
 TASK="Send {message}"
@@ -131,7 +133,8 @@ TASK="Post {text}"
 TASK="Send {content}"
 ```
 
-3. Don't use multiple `{content}` placeholders:
+1. Don't use multiple `{content}` placeholders:
+
 ```python
 # ❌ Wrong
 TASK="Post {content} and then {content}"
