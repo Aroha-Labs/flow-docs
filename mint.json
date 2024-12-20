@@ -27,6 +27,12 @@
       "url": "mailto:support@arohalabs.com"
     }
   ],
+    "tabs": [
+    {
+      "name": "Examples",
+      "url": "examples"
+    }
+  ],
   "topbarCtaButton": {
     "name": "Get Started",
     "url": "https://console.mira.network"
