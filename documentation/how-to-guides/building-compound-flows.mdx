@@ -121,11 +121,11 @@ Let's explore each step in detail.
 **Test your compound flow** to ensure all stages work correctly:
 
 ```python Python
-from mira_sdk import MiraClient, Flow
+from mira_sdk import MiraClient, CompoundFlow
 from mira_sdk.exceptions import FlowError
 
 client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})     # Initialize Mira Client
-flow = Flow(source="/path/to/compound_flow.yaml")           # Load flow configuration
+flow = CompoundFlow(source="/path/to/compound_flow.yaml")           # Load flow configuration
 
 test_input = {                                              # Prepare test inputs
     "prime_input_1": "test data",
@@ -146,6 +146,11 @@ except FlowError as e:
 **Deploy your compound flow** to make it available:
 
 ```python Python
+from mira_sdk import MiraClient, CompoundFlow
+from mira_sdk.exceptions import FlowError
+
+flow = CompoundFlow(source="/path/to/compound_flow.yaml")           # Load flow configuration
+
 try:
     client.flow.deploy(flow)                               # Deploy to platform
     print("Compound flow deployed successfully!")          # Success message
@@ -160,6 +165,9 @@ except FlowError as e:
 After deployment, **execute your compound flow**:
 
 ```python Python
+from mira_sdk import MiraClient
+from mira_sdk.exceptions import FlowError
+
 flow_name = "your-username/your-flow-name"                 # Flow identifier
 input_data = {                                             # Execution inputs
     "prime_input_1": "production data",
@@ -180,6 +188,9 @@ except FlowError as e:
 When you need to **modify your compound flow**:
 
 ```python Python
+from mira_sdk import MiraClient
+from mira_sdk.exceptions import FlowError
+
 flow = client.flow.get("your-username/your-flow-name")     # Retrieve existing flow
 flow.save("/path/to/compound_flow.yaml")                   # Save for editing
 
