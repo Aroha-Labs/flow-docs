@@ -7,7 +7,7 @@ iconType: "light"
 
 A Compound Flow is an advanced flow type designed for complex, multi-stage processing pipelines. Unlike Elemental Flows which perform single, focused tasks, Compound Flows can create sophisticated decision trees, implement custom processing logic, and orchestrate multiple processing stages. 🎯
 
-## Compound Flow Attributes 
+## Compound Flow Attributes
 
 ### Version ⚡
 
@@ -15,7 +15,7 @@ A Compound Flow is an advanced flow type designed for complex, multi-stage proce
 | --------- | ---------------------------------------------------- | -------- | --------- |
 | version   | Flow specification version using semantic versioning | Yes      | `"0.1.0"` |
 
-### Metadata 
+### Metadata
 
 | Component   | Description                       | Required | Example                              |
 | ----------- | --------------------------------- | -------- | ------------------------------------ |
@@ -26,7 +26,7 @@ A Compound Flow is an advanced flow type designed for complex, multi-stage proce
 | tags        | Keywords for categorization       | No       | `[tag1, tag2, tag3]`                 |
 | private     | Access control setting            | Yes      | `false`                              |
 
-### Input Configuration 
+### Input Configuration
 
 | Component   | Description                                | Required | Example                         |
 | ----------- | ------------------------------------------ | -------- | ------------------------------- |
@@ -36,11 +36,11 @@ A Compound Flow is an advanced flow type designed for complex, multi-stage proce
 | required    | Whether input is mandatory                 | Yes      | `true` or `false`               |
 | example     | Sample input value                         | No       | `"Example value for input1"`    |
 
-### Workflow Configuration 
+### Workflow Configuration
 
 Each Compound Flow must define a workflow consisting of multiple processing stages. There are two types of workflow stages:
 
-#### Elemental Stage Configuration 
+#### Elemental Stage Configuration
 
 | Component   | Description                          | Required | Example                |
 | ----------- | ------------------------------------ | -------- | ---------------------- |
@@ -49,7 +49,7 @@ Each Compound Flow must define a workflow consisting of multiple processing stag
 | inputs      | Mapping to flow inputs               | Yes      | Input mapping object   |
 | depends\_on | List of dependent stages             | No       | `["stage1", "stage2"]` |
 
-#### Custom Stage Configuration 
+#### Custom Stage Configuration
 
 | Component   | Description               | Required | Example                            |
 | ----------- | ------------------------- | -------- | ---------------------------------- |
@@ -60,13 +60,13 @@ Each Compound Flow must define a workflow consisting of multiple processing stag
 | dataset     | RAG dataset configuration | No       | `"author_name/dataset_name"`       |
 | depends\_on | List of dependent stages  | No       | `["stage1", "stage2"]`             |
 
-### Dependency Configuration 
+### Dependency Configuration
 
 | Component   | Description                                        | Required | Example                |
 | ----------- | -------------------------------------------------- | -------- | ---------------------- |
 | depends\_on | List of stages that must complete before execution | No       | `["stage1", "stage2"]` |
 
-#### Execution Behavior 
+#### Execution Behavior
 
 * Stages without depends\_on can execute in parallel
 
@@ -74,13 +74,13 @@ Each Compound Flow must define a workflow consisting of multiple processing stag
 
 * Multiple stages can depend on the same previous stage
 
-### Output Configuration 
+### Output Configuration
 
 | Component    | Description                      | Required | Example                                  |
 | ------------ | -------------------------------- | -------- | ---------------------------------------- |
 | output.value | List of stage outputs to combine | Yes      | `[${stage1.outputs}, ${stage2.outputs}]` |
 
-## Basic Flow Structure 
+## Basic Flow Structure
 
 <CodeGroup>
   ```yaml .yaml
@@ -157,10 +157,6 @@ Each Compound Flow must define a workflow consisting of multiple processing stag
   # Flow documentation
   readme: |
     This is a detailed explanation of what your flow does.
-
-    ### Features: 
-    - **Input 1**: Explain its purpose
-    - **Input 2**: Explain its optional use
 
     ### Workflow Overview:
     1. **First Flow**: Executes `john_doe/first_elemental_flow` with the provided inputs.
