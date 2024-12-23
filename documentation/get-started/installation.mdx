@@ -5,7 +5,7 @@ icon: "download"
 iconType: "light"
 ---
 
-## Account Setup 
+## Account Setup
 
 <CardGroup cols="2">
   <Card title="1. Create Account" icon="user-plus" href="https://console.mira.network">
@@ -17,7 +17,7 @@ iconType: "light"
   </Card>
 </CardGroup>
 
-## Prerequisites 
+## Prerequisites
 
 <Warning>
   Mira flows requires **`Python ==3.10`**
@@ -30,7 +30,7 @@ python3 --version
 
 Need to update? Visit [python.org/downloads](https://python.org/downloads)
 
-## Installation Steps 
+## Installation Steps
 
 1. Install the SDK using pip:
 
@@ -45,7 +45,7 @@ from mira_sdk import MiraClient
 client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
 ```
 
-### Using Environment Variables (Recommended) 
+### Using Environment Variables (Recommended)
 
 Create a `.env` file in your project root and add:
 
@@ -64,14 +64,14 @@ load_dotenv()
 client = MiraClient(config={"API_KEY": os.getenv("MIRA_API_KEY")})
 ```
 
-## Next Steps 
+## Next Steps
 
 <CardGroup cols="2">
   <Card title="Explore Marketplace" icon="store" href="https://console.mira.network/">
     Browse available flows to understand the platform's capabilities and start using pre-built solutions.
   </Card>
 
-  <Card title="Create Your First Flow" icon="wand-magic-sparkles" href="./building-your-own-flow.md">
+  <Card title="Create Your First Flow" icon="wand-magic-sparkles" href="/documentation/how-to-guides/building-elemental-flows">
     Follow our guide to build your own custom flow and unlock the full potential of Mira Flows.
   </Card>
 </CardGroup>
