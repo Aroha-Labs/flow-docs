@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name":"mira"
+  "name":"mira",
   "theme": "venus",
   "logo": {
     "dark": "/logo/logo-on-dark.svg",
@@ -45,7 +45,7 @@
     {
       "name": "Community",
       "icon": "discord",
-      "url": "mailto:support@arohalabs.com"
+      "url": "https://discord.com/invite/mira-network"
     }
   ],
   "navigation": [
