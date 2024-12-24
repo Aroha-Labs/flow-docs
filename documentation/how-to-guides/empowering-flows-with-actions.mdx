@@ -85,9 +85,7 @@ border: 'none'
 ### Code Example
 
 ```python
-from mira_sdk.mira.client.mira_client import MiraClient
-from mira_sdk.mira.flow import Flow
-from mira_sdk.mira.integrations.composio import ComposioConfig
+from mira_sdk import MiraClient, Flow, ComposioConfig
 
 # Initialize Mira client with your API key
 client = MiraClient(config={"API_KEY": "YOUR_MIRA_API_KEY"})
@@ -119,7 +117,7 @@ response = client.flow.test(
 1. Don't forget `{content}` in TASK:
 
 ```python
-# ❌ Wrong - missing {content}
+# ❌ Incorrect - missing {content}
 TASK="Post this message"
 
 # ✅ Correct
@@ -129,7 +127,7 @@ TASK="Post this message: {content}"
 1. Don't modify the `{content}` placeholder:
 
 ```python
-# ❌ Wrong
+# ❌ Incorrect
 TASK="Send {message}"
 TASK="Post {text}"
 
@@ -140,7 +138,7 @@ TASK="Send {content}"
 1. Don't use multiple `{content}` placeholders:
 
 ```python
-# ❌ Wrong
+# ❌ Incorrect
 TASK="Post {content} and then {content}"
 
 # ✅ Correct
