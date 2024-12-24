@@ -16,7 +16,7 @@ Datasets in **Mira Flows** support **Retrieval-Augmented Generation (RAG)** to e
 | **Component**   | **Description**               | **Required** | **Example**                         |
 | --------------- | ----------------------------- | ------------ | ----------------------------------- |
 | **Name**        | Unique identifier for dataset | Yes          | `"author/dataset_name"`             |
-| **Description** | Purpose and content overview  | No           | `"Optional description"`            |
+| **Description** | Purpose and content overview  | Yes          | `"Optional description"`            |
 | **Source Type** | Type of data being added      | Yes          | `"url"` or `"file_path"`            |
 | **Source Path** | Location of source data       | Yes          | `"example.com"` or `"path/to/file"` |
 | **Author**      | Creator's username            | Yes          | `"your-username"`                   |
@@ -27,14 +27,13 @@ Datasets in **Mira Flows** support **Retrieval-Augmented Generation (RAG)** to e
 
 <br />
 
-| **Format**         | **Description**  | **Processing Method**                   |
-| ------------------ | ---------------- | --------------------------------------- |
-| **PDF (.pdf)**     | Document files   | Text extraction from document           |
-| **Markdown (.md)** | Formatted text   | Text extraction from document           |
-| **URL**            | Web content      | Web content scraping                    |
-| **CSV (.csv)**     | URL listings     | URL extraction and content scraping     |
-| **Text (.txt)**    | Plain text       | Direct text extraction                  |
-| **Zip (.zip)**     | Compressed files | Processing of contained supported files |
+| **Format**         | **Description** | **Processing Method**               |
+| ------------------ | --------------- | ----------------------------------- |
+| **PDF (.pdf)**     | Document files  | Text extraction from document       |
+| **Markdown (.md)** | Formatted text  | Text extraction from document       |
+| **URL**            | Web content     | Web content scraping                |
+| **CSV (.csv)**     | URL listings    | URL extraction and content scraping |
+| **Text (.txt)**    | Plain text      | Direct text extraction              |
 
 ***
 
