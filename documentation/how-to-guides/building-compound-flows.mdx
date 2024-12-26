@@ -49,7 +49,7 @@ Let's explore each step in detail.
   inputs:
     prime_input_1:                                    # Primary input parameter
       type: string
-      description: "What this input is used for"
+      description: "What is this input used for"
       required: true
       example: "Example value"
     prime_input_2:                                    # Secondary input parameter
@@ -71,7 +71,7 @@ Let's explore each step in detail.
     second_flow:                                      # Parallel processing stage
       type: "custom"
       inputs:
-        input1: ${inputs.input_name}
+        input1: ${inputs.prime_input_1}
       model:
         provider: "provider-name"                     # e.g., anthropic, openai, meta, etc.
         name: "model-name"                            # Specific model identifier
