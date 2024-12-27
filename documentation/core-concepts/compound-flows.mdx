@@ -124,12 +124,12 @@ Each Compound Flow must define a workflow consisting of multiple processing stag
       type: "custom"
       inputs:
         input1: ${inputs.input_name}
-        model:
-          provider: "provider-name"
-          name: "model-name"
-        prompt: |
-          Your flow's primary instruction or role...
-          You can use {input1} placeholders to reference inputs.
+      model:
+        provider: "provider-name"
+        name: "model-name"
+      prompt: |
+        Your flow's primary instruction or role...
+        You can use {input1} placeholders to reference inputs.
 
     # Waits for both first_flow and second_flow to complete
     third_flow:
