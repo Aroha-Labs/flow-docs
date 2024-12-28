@@ -100,7 +100,7 @@ input_dict = {
 
 # Execute flow with Composio integration
 # The flow's output will automatically replace {content} in the TASK
-response = client.flow.test(
+response = client.flow.execute(
     flow,
     input_dict,
     ComposioConfig(
