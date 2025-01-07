@@ -112,7 +112,7 @@ response = client.flow.execute(
     input_dict,
     ComposioConfig(
         COMPOSIO_API_KEY="YOUR_COMPOSIO_API_KEY",
-        ACTION="PLATFORM_ACTION",  # e.g., "TWITTER_POST", "DISCORD_SEND"
+        ACTION="ENUM",  # This is the Enum e.g., "TWITTER_POST", "DISCORD_SEND"
         TASK="Describe your task in natural language - {content}",  # {content} is required and gets replaced with flow output
         ENTITY_ID="YOUR_ENTITY_ID"  # Platform-specific identifier
     )
