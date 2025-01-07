@@ -90,8 +90,15 @@ from mira_sdk import MiraClient, Flow, ComposioConfig
 # Initialize Mira client with your API key
 client = MiraClient(config={"API_KEY": "YOUR_MIRA_API_KEY"})
 
-# Load your existing flow from YAML file
-flow = Flow(source="path/to/your/flow.yaml")
+# Get your exisitng flow
+version = "1.0.0"
+input_data = {"key": "value"}
+
+# If no version is provided, latest version is used by default
+if version:
+    flow = f"author/your-flow-name/{version}"
+else:
+    flow = "author/your-flow-name"
 
 # Set up your flow's input parameters
 input_dict = {
@@ -106,7 +113,7 @@ response = client.flow.execute(
     ComposioConfig(
         COMPOSIO_API_KEY="YOUR_COMPOSIO_API_KEY",
         ACTION="PLATFORM_ACTION",  # e.g., "TWITTER_POST", "DISCORD_SEND"
-        TASK="Action specific task - {content}",  # {content} is required and gets replaced with flow output
+        TASK="Describe your task in natural language - {content}",  # {content} is required and gets replaced with flow output
         ENTITY_ID="YOUR_ENTITY_ID"  # Platform-specific identifier
     )
 )
