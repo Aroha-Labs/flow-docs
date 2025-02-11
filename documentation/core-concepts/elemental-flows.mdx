@@ -202,7 +202,7 @@ from mira_sdk import MiraClient, Flow, File, Reader, ComposioConfig
 client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
 
 
-flow = Flow(source = "FLOW.yml")
+flow = Flow(source = "/path/to/your.yaml")
 
 input_dict = {"input1" : File(file_path="user.txt"), "input2" : Reader(url="https://john-doe.com/"), "input3" : "John Doe"}
 
