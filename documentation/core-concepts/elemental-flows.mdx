@@ -7,15 +7,15 @@ iconType: "light"
 
 An Elemental Flow is a self-contained, autonomous unit designed to perform specific, unique actions. These flows serve as the foundational building blocks within the Mira Flows ecosystem, enabling precise and reliable AI-powered operations.
 
-## Elemental Flow Attributes 
+## Elemental Flow Attributes
 
-### Version 
+### Version
 
 | Component | Description                                          | Required | Example   |
 | --------- | ---------------------------------------------------- | -------- | --------- |
 | version   | Flow specification version using semantic versioning | Yes      | `"0.0.1"` |
 
-### Metadata 
+### Metadata
 
 | Component   | Description                    | Required | Example                              |
 | ----------- | ------------------------------ | -------- | ------------------------------------ |
@@ -25,7 +25,7 @@ An Elemental Flow is a self-contained, autonomous unit designed to perform speci
 | tags        | Keywords for categorization    | No       | `[tag1, tag2, tag3]`                 |
 | private     | Access control setting         | Yes      | `false`                              |
 
-### Input Configuration 
+### Input Configuration
 
 Supported Input Types:
 
@@ -43,14 +43,14 @@ Input Structure:
 | required    | Whether input is mandatory                 | Yes      | `true` or `false`               |
 | example     | Sample input value                         | No       | `"Example value for input1"`    |
 
-### Model Configuration 
+### Model Configuration
 
 | Component | Description               | Required | Example           |
 | --------- | ------------------------- | -------- | ----------------- |
 | provider  | AI service provider       | Yes      | `"provider-name"` |
 | name      | Specific model identifier | Yes      | `"model-name"`    |
 
-### Dataset Configuration (Optional) 
+### Dataset Configuration (Optional)
 
 | Component | Description          | Required | Example                      |
 | --------- | -------------------- | -------- | ---------------------------- |
@@ -63,7 +63,7 @@ Input Structure:
 | prompt    | Instructions for model behavior | Yes      | "Generate a tweet on the given topic: {topic}" |
 | readme    | Usage documentation             | Yes      | Markdown-formatted guide                       |
 
-## Basic Flow Structure 
+## Basic Flow Structure
 
 The official YAML structure for a basic Mira Flow:
 
@@ -136,7 +136,7 @@ client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
 client.dataset.create("author/dataset_name", "Optional description")
 ```
 
-### Adding Data Sources 
+### Adding Data Sources
 
 ```python
 # Add URL to your dataset
@@ -146,7 +146,7 @@ client.dataset.add_source("author/dataset_name", url="example.com")
 client.dataset.add_source("author/dataset_name", file_path="path/to/my/file.csv")
 ```
 
-### Linking Dataset with Flow 
+### Linking Dataset with Flow
 
 Add the following configuration to your flow.yaml file:
 
@@ -155,7 +155,7 @@ dataset:
   source: "author/dataset_name"
 ```
 
-### Flow Structure with RAG 
+### Flow Structure with RAG
 
 The official YAML structure for a flow with RAG capabilities:
 
@@ -186,6 +186,67 @@ dataset:
 prompt: |
   Your flow's primary instruction or role...
   You can use {input1} placeholders to reference inputs.
+
+readme: |
+  Your flow's readme...
+  You can use raw text or markdown here.
+```
+
+### File and URL inputs
+
+For leveraging different input types such as file and URL, follow the below code snippet:
+
+```python
+from mira_sdk import MiraClient, Flow, File, Reader, ComposioConfig
+
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+
+
+flow = Flow(source = "FLOW.yml")
+
+input_dict = {"input1" : File(file_path="user.txt"), "input2" : Reader(url="https://john-doe.com/"), "input3" : "John Doe"}
+
+response = client.flow.test(flow, input_dict)
+print(response)
+```
+
+The official YAML structure for a flow with file and URL input capabilities:
+
+```yaml
+version: "your.version.here"
+
+metadata:
+  name: "your-flow-name"
+  description: "A brief description of your flow"
+  author: "your-username"
+  tags: [tag1, tag2, tag3]
+  private: false
+
+inputs:
+  input1:
+    type: file
+    description: "Description of input1"
+    required: true
+    example: "Example value for input1"
+  input2:
+    type: url
+    description: "Description of input1"
+    required: true
+    example: "Example value for input1"
+  input3:
+    type: string
+    description: "Description of input1"
+    required: true
+    example: "Example value for input1"
+
+
+model:
+  provider: "provider-name"
+  name: "model-name"
+
+prompt: |
+  Your flow's primary instruction or role...
+  You can use {input1} , {input2}, {input3} placeholders to reference inputs.
 
 readme: |
   Your flow's readme...
